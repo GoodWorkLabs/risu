@@ -29,7 +29,7 @@ module Risu
 
 		# Reference Model
 		class Reference < ActiveRecord::Base
-		  self.table_name = "risu_references"
+		  self.table_name = "nessus_references"
 		  has_many :plugins
 
 			class << self

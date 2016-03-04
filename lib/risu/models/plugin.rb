@@ -30,7 +30,7 @@ module Risu
 		# Plugin Model
 		#
 		class Plugin < ActiveRecord::Base
-			self.table_name = "risu_plugins"
+			self.table_name = "nessus_plugins"
 			has_many :items
 			belongs_to :family
 			has_many :references

@@ -30,7 +30,7 @@ module Risu
 		# Policy Model
 		#
 		class Policy < ActiveRecord::Base
-			self.table_name = "risu_policies"
+			self.table_name = "nessus_policies"
 			has_many :family_selections
 			has_many :individual_plugin_selections
 			has_many :reports

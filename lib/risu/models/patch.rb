@@ -30,7 +30,7 @@ module Risu
 		# Patch Model
 		#
 		class Patch < ActiveRecord::Base
-			self.table_name = "risu_patches"
+			self.table_name = "nessus_patches"
 			belongs_to :host
 		end
 	end

@@ -30,7 +30,7 @@ module Risu
 		# Item Model
 		#
 		class Item < ActiveRecord::Base
-			self.table_name = "risu_items"
+			self.table_name = "nessus_items"
 			belongs_to :host
 			belongs_to :plugin
 			has_many :attachments

@@ -29,7 +29,7 @@ module Risu
 
 		# Report Model
 		class Report < ActiveRecord::Base
-		  self.table_name = "risu_reports"
+		  self.table_name = "nessus_reports"
 		  has_many :hosts
 		  belongs_to :policy
 

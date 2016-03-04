@@ -29,7 +29,7 @@ module Risu
 
 		# Host Model
 		class Host < ActiveRecord::Base
-			self.table_name = "risu_hosts"
+			self.table_name = "nessus_hosts"
 			belongs_to :report
 			has_many :items
 			has_many :patches
