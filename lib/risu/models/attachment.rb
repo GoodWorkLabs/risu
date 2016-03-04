@@ -30,7 +30,8 @@ module Risu
 		# Patch Model
 		#
 		class Attachment < ActiveRecord::Base
-			belongs_to :item
+			self.table_name = "risu_attachments"
+			belongs_to :risu_item
 		end
 	end
 end

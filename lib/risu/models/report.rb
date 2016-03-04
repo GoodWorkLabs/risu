@@ -29,8 +29,9 @@ module Risu
 
 		# Report Model
 		class Report < ActiveRecord::Base
-		  has_many :hosts
-		  belongs_to :policy
+		  self.table_name = "risu_reports"
+		  has_many :risu_hosts
+		  belongs_to :risu_policy
 
 			class << self
 

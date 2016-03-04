@@ -32,20 +32,20 @@ module Risu
 
 			# Creates all of the database tables required by the parser
 			def self.up
-				create_table :policies do |t|
+				create_table :risu_policies do |t|
 					t.string :name
 					t.text :comments
 					t.string :owner
 					t.string :visibility
 				end
 
-				create_table :server_preferences do |t|
+				create_table :risu_server_preferences do |t|
 					t.integer :policy_id
 					t.string :name
 					t.text :value, limit: 4294967295
 				end
 
-				create_table :plugins_preferences do |t|
+				create_table :risu_plugins_preferences do |t|
 					t.integer :policy_id
 					t.integer :plugin_id
 					t.string :plugin_name
@@ -56,18 +56,18 @@ module Risu
 					t.string :selected_values
 				end
 
-				create_table :family_selections do |t|
+				create_table :risu_family_selections do |t|
 					t.integer :policy_id
 					t.string :family_name
 					t.string :status
 				end
 
-				create_table :reports do |t|
+				create_table :risu_reports do |t|
 					t.integer :policy_id
 					t.string :name
 				end
 
-				create_table :hosts do |t|
+				create_table :risu_hosts do |t|
 					t.integer :report_id
 					t.string :name
 					t.string :os
@@ -81,13 +81,13 @@ module Risu
 					t.integer :risk_score
 				end
 
-				create_table :host_properties do |t|
+				create_table :risu_host_properties do |t|
 					t.integer :host_id
 					t.string :name
 					t.text :value, limit: 4294967295
 				end
 
-				create_table :items do |t|
+				create_table :risu_items do |t|
 					t.integer :host_id
 					t.integer :plugin_id
 					t.integer :attachment_id
@@ -115,7 +115,7 @@ module Risu
 					t.integer :risk_score
 				end
 
-				create_table :plugins do |t|
+				create_table :risu_plugins do |t|
 					t.string :plugin_name
 					t.string :family_name
 					t.text :description, limit: 4294967295
@@ -159,7 +159,7 @@ module Risu
 					t.boolean :default_account
 				end
 
-				create_table :individual_plugin_selections do |t|
+				create_table :risu_individual_plugin_selections do |t|
 					t.string :policy_id
 					t.integer :plugin_id
 					t.string :plugin_name
@@ -167,13 +167,13 @@ module Risu
 					t.string :status
 				end
 
-				create_table :references do |t|
+				create_table :risu_references do |t|
 					t.integer :plugin_id
 					t.string :reference_name
 					t.text :value
 				end
 
-				create_table :attachments do |t|
+				create_table :risu_attachments do |t|
 					t.integer :item_id
 					t.string :name
 					t.string :ttype
@@ -181,26 +181,26 @@ module Risu
 					t.text :value
 				end
 
-				create_table :versions do |t|
+				create_table :risu_versions do |t|
 					t.string :version
 				end
 
-				create_table :service_descriptions do |t|
+				create_table :risu_service_descriptions do |t|
 					t.string :name
 					t.integer :port
 					t.string :description
 				end
 
-				create_table :patches do |t|
+				create_table :risu_patches do |t|
 					t.integer :host_id
 					t.string :name
 					t.string :value
 				end
 
 				#Index's for speed increases, possibly have these apply after parsing @TODO
-				add_index :items, :host_id
-				add_index :items, :plugin_id
-				add_index :references, :plugin_id
+				add_index :risu_items, :host_id
+				add_index :risu_items, :plugin_id
+				add_index :risu_references, :plugin_id
 
 				#Default data for service descriptions
 				#@TODO Unused ATM, might be better to use a yaml file tho..
@@ -219,21 +219,21 @@ module Risu
 			# Deletes all of the database tables created
 			#
 			def self.down
-				drop_table :policies
-				drop_table :server_preferences
-				drop_table :plugins_preferences
-				drop_table :family_selections
-				drop_table :individual_plugin_selections
-				drop_table :reports
-				drop_table :hosts
-				drop_table :items
-				drop_table :plugins
-				drop_table :references
-				drop_table :versions
-				drop_table :service_descriptions
-				drop_table :patches
-				drop_table :host_properties
-				drop_table :attachments
+				drop_table :risu_policies
+				drop_table :risu_server_preferences
+				drop_table :risu_plugins_preferences
+				drop_table :risu_family_selections
+				drop_table :risu_individual_plugin_selections
+				drop_table :risu_reports
+				drop_table :risu_hosts
+				drop_table :risu_items
+				drop_table :risu_plugins
+				drop_table :risu_references
+				drop_table :risu_versions
+				drop_table :risu_service_descriptions
+				drop_table :risu_patches
+				drop_table :risu_host_properties
+				drop_table :risu_attachments
 			end
 		end
 	end

@@ -30,6 +30,7 @@ module Risu
 		# Version Model
 		#
 		class Version < ActiveRecord::Base
+			self.table_name = "risu_versions"
 		end
 	end
 end

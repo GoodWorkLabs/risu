@@ -30,8 +30,9 @@ module Risu
 		# IndividualPluginSelection Model
 		#
 		class IndividualPluginSelection < ActiveRecord::Base
-			belongs_to :policy
-			has_many :plugins
+			self.table_name = "risu_individual_plugin_selections"
+			belongs_to :risu_policy
+			has_many :risu_plugins
 		end
 	end
 end

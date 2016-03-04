@@ -29,10 +29,11 @@ module Risu
 
 		# Host Model
 		class Host < ActiveRecord::Base
-			belongs_to :report
-			has_many :items
-			has_many :patches
-			has_many :host_properties
+			self.table_name = "risu_hosts"
+			belongs_to :risu_report
+			has_many :risu_items
+			has_many :risu_patches
+			has_many :risu_host_properties
 
 			class << self
 

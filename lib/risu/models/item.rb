@@ -30,9 +30,10 @@ module Risu
 		# Item Model
 		#
 		class Item < ActiveRecord::Base
-			belongs_to :host
-			belongs_to :plugin
-			has_many :attachments
+			self.table_name = "risu_items"
+			belongs_to :risu_host
+			belongs_to :risu_plugin
+			has_many :risu_attachments
 
 			class << self
 
@@ -82,14 +83,14 @@ module Risu
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def critical_risks_unique
-					where(:severity => 4).joins(:plugin).order("plugins.cvss_base_score").group(:plugin_id)
+					where(:severity => 4).joins(:risu_plugin).order("risu_plugins.cvss_base_score").group(:plugin_id)
 				end
 
 				# Queries for all the unique high risks in the database
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def high_risks_unique
-					where(:severity => 3).joins(:plugin).order("plugins.cvss_base_score").group(:plugin_id)
+					where(:severity => 3).joins(:risu_plugin).order("risu_plugins.cvss_base_score").group(:plugin_id)
 				end
 
 				# Queries for all the unique Critical findings and sorts them by count
@@ -113,7 +114,7 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def medium_risks_unique
 
-					where(:severity => 2).joins(:plugin).order("plugins.cvss_base_score").group(:plugin_id)
+					where(:severity => 2).joins(:risu_plugin).order("risu_plugins.cvss_base_score").group(:plugin_id)
 				end
 
 				# Queries for all the unique medium findings and sorts them by count
@@ -128,14 +129,14 @@ module Risu
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def low_risks_unique
-					where(:severity => 1).joins(:plugin).order("plugins.cvss_base_score").group(:plugin_id)
+					where(:severity => 1).joins(:risu_plugin).order("risu_plugins.cvss_base_score").group(:plugin_id)
 				end
 
 				# Queries for all the unique low findings and sorts them by count
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def low_risks_unique_sorted
-					select("items.*").select("count(*) as count_all").where(:severity => 1).group(:plugin_id).order("count_all DESC")
+					select("risu_items.*").select("count(*) as count_all").where(:severity => 1).group(:plugin_id).order("count_all DESC")
 				end
 
 				# Queries for all the unique info risks in the database
@@ -143,14 +144,14 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def info_risks_unique
 					#where(:severity => 0).joins(:plugin).order(:cvss_base_score).group(:plugin_id)
-					where(:severity => 0).joins(:plugin).order("plugins.cvss_base_score").group(:plugin_id)
+					where(:severity => 0).joins(:risu_plugin).order("risu_plugins.cvss_base_score").group(:plugin_id)
 				end
 
 				# Queries for all the unique info findings and sorts them by count
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def info_risks_unique_sorted
-					select("items.*").select("count(*) as count_all").where(:severity => 0).group(:plugin_id).order("count_all DESC")
+					select("risu_items.*").select("count(*) as count_all").where(:severity => 0).group(:plugin_id).order("count_all DESC")
 				end
 
 				# Queries for all the risks grouped by service type, used for the Vulnerabilities by Service graph
@@ -158,7 +159,7 @@ module Risu
 				# @TODO rewrite
 				# @return [ActiveRecord::Relation] with the query results
 				def risks_by_service(limit=10)
-					select("items.*").select("count(*) as count_all").where("svc_name != 'unknown' and svc_name != 'general'").group(:svc_name).order("count_all DESC").limit(limit)
+					select("risu_items.*").select("count(*) as count_all").where("svc_name != 'unknown' and svc_name != 'general'").group(:svc_name).order("count_all DESC").limit(limit)
 				end
 
 				# Queries for all the Critical risks by plugin
@@ -168,7 +169,7 @@ module Risu
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def risks_by_plugin(limit=10)
-					select("items.*").select("count(*) as count_all").joins(:plugin).where("plugin_id != 1").where(:severity => 4).group(:plugin_id).order("count_all DESC").limit(limit)
+					select("risu_items.*").select("count(*) as count_all").joins(:risu_plugin).where("plugin_id != 1").where(:severity => 4).group(:plugin_id).order("count_all DESC").limit(limit)
 				end
 
 				# Queries for all the Critical risks by host
@@ -180,7 +181,7 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def risks_by_host(limit=10)
 					#select("items.*").select("count(*) as count_all").joins(:host).where("plugin_id != 1").where(:severity => 4).group(:host_id).order("count_all DESC").limit(limit)
-					Item.joins(:host).where.not(plugin_id: 1).where(:severity => 4).group(:host_id).order('count(*) desc').limit(limit)
+					Item.joins(:risu_host).where.not(plugin_id: 1).where(:severity => 4).group(:host_id).order('count(*) desc').limit(limit)
 				end
 
 				# Queries for all the Critical risks by host
@@ -190,7 +191,7 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def critical_risks_by_host(limit=10)
 					#select("items.*").select("count(*) as count_all").joins(:host).where("plugin_id != 1").where(:severity => 4).group(:host_id).order("count_all DESC").limit(limit)
-					Item.joins(:host).where.not(plugin_id: 1).where(:severity => 4).group(:host_id).order('count(*) desc').limit(limit)
+					Item.joins(:risu_host).where.not(plugin_id: 1).where(:severity => 4).group(:host_id).order('count(*) desc').limit(limit)
 				end
 
 				# Queries for all the High risks by host
@@ -201,7 +202,7 @@ module Risu
 				def high_risks_by_host(limit=10)
 					#select("items.*").select("count(*) as count_all").joins(:host).where("plugin_id != 1").where(:severity => 3).group(:host_id).order("count_all DESC").limit(limit)
 
-					Item.joins(:host).where.not(plugin_id: 1).where(:severity => 3).group(:host_id).order('count(*) desc').limit(limit)
+					Item.joins(:risu_host).where.not(plugin_id: 1).where(:severity => 3).group(:host_id).order('count(*) desc').limit(limit)
 				end
 
 				# Queries for all the Medium risks by host
@@ -211,7 +212,7 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def medium_risks_by_host(limit=10)
 					#select("items.*").select("count(*) as count_all").joins(:host).where("plugin_id != 1").where(:severity => 2).group(:host_id).order("count_all DESC").limit(limit)
-					Item.joins(:host).where.not(plugin_id: 1).where(:severity => 2).group(:host_id).order('count(*) desc').limit(limit)
+					Item.joins(:risu_host).where.not(plugin_id: 1).where(:severity => 2).group(:host_id).order('count(*) desc').limit(limit)
 				end
 
 				# Queries for all the Low risks by host
@@ -221,7 +222,7 @@ module Risu
 				# @return [ActiveRecord::Relation] with the query results
 				def low_risks_by_host(limit=10)
 					#select("items.*").select("count(*) as count_all").joins(:host).where("plugin_id != 1").where(:severity => 1).group(:host_id).order("count_all DESC").limit(limit)
-					Item.joins(:host).where.not(plugin_id: 1).where(:severity => 1).group(:host_id).order('count(*) desc').limit(limit)
+					Item.joins(:risu_host).where.not(plugin_id: 1).where(:severity => 1).group(:host_id).order('count(*) desc').limit(limit)
 				end
 
 				# Queries for all the hosts with the Microsoft patch summary plugin (38153)
@@ -493,10 +494,10 @@ module Risu
 					#return Item.joins(:plugin).where(:severity => 4).order("plugins.cvss_base_score").count(:all, :group => :plugin_id)
 					#return Item.joins(:plugin).where(:severity => 4).order("plugins.cvss_base_score").group(:plugin_id).distinct.count
 
-					critical = Item.joins(:plugin).where(:severity => 4).order("plugins.cvss_base_score").group(:plugin_id).distinct.count
+					critical = Item.joins(:risu_plugin).where(:severity => 4).order("risu_plugins.cvss_base_score").group(:plugin_id).distinct.count
 
 					if critical.size < 10
-						high = Item.joins(:plugin).where(:severity => 3).order("plugins.cvss_base_score").group(:plugin_id).distinct.count
+						high = Item.joins(:risu_plugin).where(:severity => 3).order("risu_plugins.cvss_base_score").group(:plugin_id).distinct.count
 						critical = critical.merge high
 					end
 
@@ -585,7 +586,7 @@ module Risu
 				#
 				# @return [ActiveRecord::Relation] with the query results
 				def all_risks_unique_sorted
-				    select("items.*").select("count(*) as count_all").group(:plugin_id).order("count_all DESC")
+				    select("risu_items.*").select("count(*) as count_all").group(:plugin_id).order("count_all DESC")
 				end
 
 				# Returns the plugin that this [Item] belongs to

@@ -30,7 +30,8 @@ module Risu
 		# Patch Model
 		#
 		class Patch < ActiveRecord::Base
-			belongs_to :host
+			self.table_name = "risu_patches"
+			belongs_to :risu_host
 		end
 	end
 end

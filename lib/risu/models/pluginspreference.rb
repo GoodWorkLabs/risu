@@ -30,7 +30,8 @@ module Risu
 		# PluginPreference Model
 		#
 		class PluginsPreference < ActiveRecord::Base
-		  belongs_to :policy
+		  self.table_name = "risu_plugins_preferences"
+		  belongs_to :risu_policy
 		end
 	end
 end

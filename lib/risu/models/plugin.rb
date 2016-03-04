@@ -30,10 +30,11 @@ module Risu
 		# Plugin Model
 		#
 		class Plugin < ActiveRecord::Base
-			has_many :items
-			belongs_to :family
-			has_many :references
-			has_many :individual_plugin_selections
+			self.table_name = "risu_plugins"
+			has_many :risu_items
+			belongs_to :risu_family
+			has_many :risu_references
+			has_many :risu_individual_plugin_selections
 
 			def cvss_base_score=(cvss_base_score)
 				write_attribute(:cvss_base_score, cvss_base_score.to_f)
