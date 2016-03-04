@@ -31,11 +31,11 @@ module Risu
 		#
 		class Policy < ActiveRecord::Base
 			self.table_name = "risu_policies"
-			has_many :risu_family_selections
-			has_many :risu_individual_plugin_selections
-			has_many :risu_reports
-			has_many :risu_plugins_preferences
-			has_many :risu_server_preferences
+			has_many :family_selections
+			has_many :individual_plugin_selections
+			has_many :reports
+			has_many :plugins_preferences
+			has_many :server_preferences
 		end
 	end
 end

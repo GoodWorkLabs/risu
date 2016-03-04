@@ -31,7 +31,7 @@ module Risu
 		#
 		class HostProperty < ActiveRecord::Base
 			self.table_name = "risu_host_properties"
-			belongs_to :risu_host
+			belongs_to :host
 		end
 	end
 end

@@ -31,7 +31,7 @@ module Risu
 		#
 		class Attachment < ActiveRecord::Base
 			self.table_name = "risu_attachments"
-			belongs_to :risu_item
+			belongs_to :item
 		end
 	end
 end

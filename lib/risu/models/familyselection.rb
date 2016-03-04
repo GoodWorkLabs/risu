@@ -30,7 +30,7 @@ module Risu
 		# FamilySelection Model
 		class FamilySelection < ActiveRecord::Base
 		  self.table_name = "risu_family_selections"
-		  belongs_to :risu_policy
+		  belongs_to :policy
 		end
 	end
 end

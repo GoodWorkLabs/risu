@@ -30,8 +30,8 @@ module Risu
 		# Report Model
 		class Report < ActiveRecord::Base
 		  self.table_name = "risu_reports"
-		  has_many :risu_hosts
-		  belongs_to :risu_policy
+		  has_many :hosts
+		  belongs_to :policy
 
 			class << self
 

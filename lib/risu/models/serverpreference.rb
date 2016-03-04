@@ -31,7 +31,7 @@ module Risu
 		#
 		class ServerPreference < ActiveRecord::Base
 		  self.table_name = "risu_server_preferences"
-		  belongs_to :risu_policy
+		  belongs_to :policy
 		end
 	end
 end
