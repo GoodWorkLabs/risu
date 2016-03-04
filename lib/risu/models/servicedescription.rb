@@ -30,7 +30,7 @@ module Risu
 		# Service Description Model
 		#
 		class ServiceDescription < ActiveRecord::Base
-			self.table_name = "risu_service_descriptions"
+			self.table_name = "nessus_service_descriptions"
 		end
 	end
 end
