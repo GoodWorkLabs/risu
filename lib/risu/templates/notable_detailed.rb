@@ -44,17 +44,17 @@ module Risu
 			#
 			#
 			def render(output)
-				@output.text Report.classification.upcase, :align => :center
+				@output.text NessusReport.classification.upcase, :align => :center
 				@output.text "\n"
 
-				report_title Report.title
+				report_title NessusReport.title
 				report_subtitle "Notable Vulnerabilities"
-				report_author "This report was prepared by\n#{Report.author}"
+				report_author "This report was prepared by\n#{NessusReport.author}"
 
 				@output.text "\n\n\n"
 
 				@output.text "Scan Date:", :style => :bold
-				@output.text "#{Report.scan_date}"
+				@output.text "#{NessusReport.scan_date}"
 				@output.text "\n"
 
 				data = Item.top_10_sorted_raw

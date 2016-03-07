@@ -33,9 +33,9 @@ class MSPatchSummaryTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "/tmp/ms_patch_summary.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("ms_patch_summary", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("ms_patch_summary", NessusReport, @file_name, @template_manager)
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"

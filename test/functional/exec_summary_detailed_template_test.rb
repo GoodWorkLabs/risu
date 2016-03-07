@@ -33,9 +33,9 @@ class ExecSummaryDetailedTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "#{Dir.tmpdir}/exec_summary_detailed.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("exec_summary_detailed", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("exec_summary_detailed", NessusReport, @file_name, @template_manager)
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"

@@ -35,7 +35,7 @@ class FindingsSummaryPluginIDTemplateTest < ActiveSupport::TestCase
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"

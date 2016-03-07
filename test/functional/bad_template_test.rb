@@ -65,7 +65,7 @@ class BadTemplateTest < ActiveSupport::TestCase
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 		@template_manager.registered_templates << @template
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"
@@ -78,7 +78,7 @@ class BadTemplateTest < ActiveSupport::TestCase
 
 	test 'should fail to create bad_tempalte.pdf on template creation' do
 		assert_raise NoMethodError do
-			@templater = Risu::Base::Templater.new("bad_template", Report, @file_name, @template_manager)
+			@templater = Risu::Base::Templater.new("bad_template", NessusReport, @file_name, @template_manager)
 			@templater.generate
 		end
 
@@ -87,7 +87,7 @@ class BadTemplateTest < ActiveSupport::TestCase
 
 	test 'should raise an exception' do
 		assert_raise NoMethodError do
-			@templater = Risu::Base::Templater.new("bad_template", Report, @file_name, @template_manager)
+			@templater = Risu::Base::Templater.new("bad_template", NessusReport, @file_name, @template_manager)
 			@templater.generate
 		end
 	end

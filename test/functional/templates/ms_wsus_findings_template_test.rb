@@ -34,13 +34,13 @@ class MSWSUSFindingsTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/ms_wsus_findings.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "ms_wsus_findings Test"
 		@report.author = "hammackj"
 		@report.company = "None"
 		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("ms_wsus_findings", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("ms_wsus_findings", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

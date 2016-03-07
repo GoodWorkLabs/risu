@@ -36,17 +36,17 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.1",
 					:renderer => "PDF",
-					:description => "Generates a Malicious Process Detection Report"
+					:description => "Generates a Malicious Process Detection NessusReport"
 				}
 			end
 
 			def render(output)
-				text Report.classification.upcase, :align => :center
+				text NessusReport.classification.upcase, :align => :center
 				text "\n"
 
-				report_title Report.title
+				report_title NessusReport.title
 				report_subtitle "Malicious Process Detection Findings"
-				report_author "This report was prepared by\n#{Report.author}"
+				report_author "This report was prepared by\n#{NessusReport.author}"
 
 				text "\n\n\n"
 

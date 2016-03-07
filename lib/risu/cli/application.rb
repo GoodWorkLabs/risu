@@ -234,7 +234,7 @@ module Risu
 						end
 
 						opt.separator('')
-						opt.separator("Reporting Options")
+						opt.separator("NessusReporting Options")
 
 						opt.on('-t', '--template FILE', 'The filename of the template to use') do |option|
 							@options[:template] = option
@@ -397,7 +397,7 @@ module Risu
 						exit
 					end
 
-					@findings = Report
+					@findings = NessusReport
 
 					@findings.author = @report["author"]
 					@findings.title = @report["title"]

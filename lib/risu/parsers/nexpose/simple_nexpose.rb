@@ -49,7 +49,7 @@ module Risu
 				def initialize
 					@vals = Hash.new
 
-					@report = Report.create
+					@report = NessusReport.create
 				end
 
 				# @TODO comment

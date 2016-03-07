@@ -34,12 +34,12 @@ class GraphTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/graphs.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"
 		@report.classification = "None"
-		@templater = Risu::Base::Templater.new("graphs", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("graphs", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

@@ -34,13 +34,13 @@ class TemplateTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/template.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Template Test"
 		@report.author = "hammackj"
 		@report.company = "None"
 		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("technical_findings", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("technical_findings", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

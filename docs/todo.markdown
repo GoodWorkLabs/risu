@@ -44,7 +44,7 @@ end -->
 - Screenshots
 	- Risu Console with Host.first
 	- Risu Command line risu -l
-	- Sample Reports from Metasploitable2 Scan
+	- Sample NessusReports from Metasploitable2 Scan
 		- pngs of a few pages
 		- put sample PDFs in docs/sample_reports
 - Create docs/KNOWN_ISSUES.markdown
@@ -227,7 +227,7 @@ end -->
 - generate a graph matirx like exec summary detailed
 - malware infection graph
 
-###Reports / Templates
+###NessusReports / Templates
 - Easier way to select the Scan to generate reports from
 - Unsupported OS report
 	- http://windows.microsoft.com/en-us/windows/lifecycle
@@ -239,8 +239,8 @@ end -->
 	- 2003 =
 	- 2008 =
 
-- Reports based on audit data
-- Reports for mobile information
+- NessusReports based on audit data
+- NessusReports for mobile information
 - web server statics report (plugin id)
 - virtual machine stats report (20094)
 - add pdf bookmarks to reports
@@ -281,13 +281,13 @@ end -->
 - add more detailed pci templates
 - Provide more templates
 	- Virtual Machine Summary
-	- Fix list Report?
+	- Fix list NessusReport?
 	- Compact the data in tech findings to be more printer friendly
 	- finding summary coversheet looks odd
 	- [TEMPLATE] unsupported OS template
 	- [API] add list of unsupported os ip's accessors
 	- [TEMPLATE] detailed findings should be combined to save paper on printing
-	- Sort Technical Findings Report by count/score
+	- Sort Technical Findings NessusReport by count/score
 	- Add template validation and more error checking
 - Added TOC/Index to the technical findings report, issue 15
 - More text blocks for various plugins services
@@ -304,7 +304,7 @@ end -->
 		- Add test for new XML element
 		- Add test for new host properties tag
 	- Model Tests
-		- Report
+		- NessusReport
 		- Item
 		- Host
 	- Application specs

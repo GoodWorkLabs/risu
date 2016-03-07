@@ -45,20 +45,20 @@ module Risu
 			#
 			#
 			def render(output)
-				output.text Report.classification.upcase, :align => :center
+				output.text NessusReport.classification.upcase, :align => :center
 				output.text "\n"
 
-				report_title Report.title
+				report_title NessusReport.title
 				report_subtitle "Executive Summary"
-				report_author "This report was prepared by\n#{Report.author}"
+				report_author "This report was prepared by\n#{NessusReport.author}"
 
 				output.text "\n\n\n"
 
 				output.text "Scan Date:", :style => :bold
-				output.text "#{Report.scan_date}"
+				output.text "#{NessusReport.scan_date}"
 				output.text "\n"
 
-				output.text "This report contains the results of a security audit performed on #{Report.scan_date}. It contains confidential information about the state of your network. Access to this information by unauthorized personnel may allow them to compromise your network.\n\n"
+				output.text "This report contains the results of a security audit performed on #{NessusReport.scan_date}. It contains confidential information about the state of your network. Access to this information by unauthorized personnel may allow them to compromise your network.\n\n"
 
 				output.text "A total of #{Host.count} hosts were found and scanned for vulnerabilities.\n\n"
 

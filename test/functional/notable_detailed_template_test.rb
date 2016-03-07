@@ -34,13 +34,13 @@ class NotableDetailedTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/notable_detailed.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"
 		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("notable_detailed", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("notable_detailed", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

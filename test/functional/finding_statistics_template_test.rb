@@ -33,9 +33,9 @@ class FindingStatisticsTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "/tmp/finding_statistics.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("finding_statistics", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("finding_statistics", NessusReport, @file_name, @template_manager)
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"

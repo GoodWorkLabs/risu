@@ -34,13 +34,13 @@ class StigFindingsSummaryTest < ActiveSupport::TestCase
 		@file_name = "/tmp/stig_findings_summary.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Stig Findings Summary Test"
 		@report.author = "hammackj"
 		@report.company = "None"
 		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("stig_findings_summary", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("stig_findings_summary", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

@@ -65,13 +65,13 @@ module Risu
 
 				# An array of all valid elements expected during parsing
 				VALID_ELEMENTS = VALID_REFERENCES \
-					+ Set.new(%w[ReportItem plugin_version risk_factor
+					+ Set.new(%w[NessusReportItem plugin_version risk_factor
 					description cvss_base_score solution item plugin_output tag synopsis plugin_modification_date
-					FamilyName FamilyItem Status vuln_publication_date ReportHost HostProperties preferenceName
+					FamilyName FamilyItem Status vuln_publication_date NessusReportHost HostProperties preferenceName
 					preferenceValues preferenceType fullName pluginId pluginName selectedValue selectedValue
 					name value preference plugin_publication_date cvss_vector patch_publication_date
 					NessusClientData_v2 Policy PluginName ServerPreferences policyComments policyName PluginItem
-					Report Family Preferences PluginsPreferences FamilySelection IndividualPluginSelection PluginId
+					NessusReport Family Preferences PluginsPreferences FamilySelection IndividualPluginSelection PluginId
 					pci-dss-compliance exploitability_ease cvss_temporal_vector exploit_framework_core cvss_temporal_score
 					exploit_available metasploit_name exploit_framework_canvas canvas_package exploit_framework_metasploit
 					plugin_type exploithub_sku exploit_framework_exploithub stig_severity plugin_name fname always_run
@@ -121,10 +121,10 @@ module Risu
 					"item" => :start_item,
 					"FamilyItem" => :start_family_item,
 					"PluginItem" => :start_plugin_item,
-					"Report" => :start_report,
-					"ReportHost" => :start_report_host,
+					"NessusReport" => :start_report,
+					"NessusReportHost" => :start_report_host,
 					"tag" => :start_tag,
-					"ReportItem" => :start_report_item,
+					"NessusReportItem" => :start_report_item,
 					"attachment" => :start_attachment
 				}
 
@@ -148,7 +148,7 @@ module Risu
 					"FamilyItem" => :end_family_item,
 					"PluginItem" => :end_plugin_item,
 					"tag" => :end_tag,
-					"ReportItem" => :end_report_item,
+					"NessusReportItem" => :end_report_item,
 					"attachment" => :end_attachment
 				}
 
@@ -359,8 +359,8 @@ module Risu
 					end
 				end
 
-				#We cannot handle the references in the same block as the rest of the ReportItem tag because
-				#there tends to be more than of the different types of reference per ReportItem, this causes issue for a sax
+				#We cannot handle the references in the same block as the rest of the NessusReportItem tag because
+				#there tends to be more than of the different types of reference per NessusReportItem, this causes issue for a sax
 				#parser. To solve this we do the references before the final plugin data, Valid references must be added
 				#the VALID_REFERENCE set at the top to be parsed.
 				def end_valid_reference(element)

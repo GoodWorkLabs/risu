@@ -33,9 +33,9 @@ class PciComplianceTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "/tmp/pci.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("pci_compliance", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("pci_compliance", NessusReport, @file_name, @template_manager)
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Function Test"
 		@report.author = "hammackj"
 		@report.company = "None"

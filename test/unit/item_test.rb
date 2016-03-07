@@ -30,7 +30,7 @@ class ItemTest < ActiveSupport::TestCase
 	def setup
 		setup_test_database
 
-		@report = Report
+		@report = NessusReport
 		@report.title = "Test"
 		@report.author = "hammackj"
 		@report.company = "None"

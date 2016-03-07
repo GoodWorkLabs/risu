@@ -43,12 +43,12 @@ module Risu
 			end
 
 			def header
-				text Report.classification.upcase, :align => :center
+				text NessusReport.classification.upcase, :align => :center
 				text "\n"
 
-				report_title Report.title
+				report_title NessusReport.title
 				report_subtitle "Stig Findings Summary"
-				report_author "This report was prepared by\n#{Report.author}"
+				report_author "This report was prepared by\n#{NessusReport.author}"
 
 				text "\n\n\n"
 			end

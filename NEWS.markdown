@@ -158,9 +158,9 @@
 			- The user directory of ~/.risu/templates/
 	- Added host_findings_csv.rb template
 	- Added "Failed compliance audits" template [abenson]
-	- Added "Exploitablity Summary Report" template
-	- Added "Talking Points Report" template
-	- Added "Missing Root Cause Report" template
+	- Added "Exploitablity Summary NessusReport" template
+	- Added "Talking Points NessusReport" template
+	- Added "Missing Root Cause NessusReport" template
 	- Templates must now specify their renderer :renderer => "PDF" or :renderer => "CSV" in the template_info section.
 		This will break all templates until it is added.
 	- Template Helper
@@ -224,8 +224,8 @@
 		- Initial RiskScore plugin to calculate a risk score for Plugins / Findings / Hosts
 
 #1.6.2 (March 13, 2013)
-- pci_compliance template - Corrected a bug that prevented it from working. Reported by [jkordish]
-- Added Report.extra to contain any extra risu.config yaml settings to be passed to a report
+- pci_compliance template - Corrected a bug that prevented it from working. NessusReported by [jkordish]
+- Added NessusReport.extra to contain any extra risu.config yaml settings to be passed to a report
 	- Check for nil before using it!
 	- It will contain all tags in the report: section of the config file
 
@@ -234,7 +234,7 @@
 	- Reference Model
 		- Added usn
 	- HostProperty Model ***NEW***
-		- New model for each HostProperty off of ReportHost
+		- New model for each HostProperty off of NessusReportHost
 		- The table is name / value for each property
 		- All netstat / traceroute tags will be in this new table there can be up to 65k entries for each protocol and 255 traceroute entries per host
 
@@ -248,7 +248,7 @@
 	- report_title(title, newline=false) #font size 24 + bold + center
 	- report_subtitle(title, newline=false) #font size 18 + bold + center
 	- report_author(author, newline=false) #font size 24 + bold + center
-	- report_classification(classification=Report.classification.upcase, newline=true)
+	- report_classification(classification=NessusReport.classification.upcase, newline=true)
 	- report_text(text, options={})
 	- heading1 #font size 24 + bold
 	- heading2 #font size 18 + bold
@@ -345,7 +345,7 @@
 		- Added cert_vu() method
 - Switched from the 'mysql' gem to the 'mysql2' gem for better rails3 support with mysql databases
 	- Note: **This means you need to specify mysql2 as the database adapter**
-- Fixed Ticket #57, which had a sqlite specific query, breaking the query on MySql. Reported by Drew Brunson
+- Fixed Ticket #57, which had a sqlite specific query, breaking the query on MySql. NessusReported by Drew Brunson
 - A few typos and spelling errors corrected
 - Added some PRAGMA's that might speed up SQLite3 usage. If it is still to slow (on insert) It is recommended to use MySQL.
 
@@ -376,7 +376,7 @@
 	- cisco-sr as a reference
 	- always_run added to the Item Model (Related to a Registry Svc Check)
 - Spell-checked all of the templates and fixed some spelling issues
-- Added a template for the WSUS Patch Management Report Nessus Plugin ID: 58133
+- Added a template for the WSUS Patch Management NessusReport Nessus Plugin ID: 58133
 - In the -v, --version option displays the version of ruby and the version of rubygems
 - Thank you to everyone that has submitted new tags/bug reports/etc
 - Also Thank you for all the kind words related to the tool also.
@@ -545,7 +545,7 @@ You can access it via `Host.first.patches` or `Patch.all`
 	- Findings Summary
 	- Cover Sheet example
 - Updated more yardoc documentation
-- Reports
+- NessusReports
 	- Set a default font size of 12
 	- Set default margins of 50,75,50,75
 	- Cleaned up the graphs to be a little easier to read

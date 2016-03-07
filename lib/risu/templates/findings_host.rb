@@ -49,9 +49,9 @@ module Risu
 
 				report_classification
 
-				report_title Report.title
-				report_subtitle "Findings Summary by Host Report"
-				report_author "This report was prepared by\n#{Report.author}"
+				report_title NessusReport.title
+				report_subtitle "Findings Summary by Host NessusReport"
+				report_author "This report was prepared by\n#{NessusReport.author}"
 
 				@output.text "\n\n\n"
 

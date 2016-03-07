@@ -46,15 +46,15 @@ module Risu
 			#
 			#
 			def render(output)
-				output.text Report.classification.upcase, :align => :center
+				output.text NessusReport.classification.upcase, :align => :center
 				output.text "\n"
 
 				output.font_size(24) do
-					output.text Report.title, :align => :center
+					output.text NessusReport.title, :align => :center
 				end
 
 				output.font_size(18) do
-					output.text "This report was prepared by\n#{Report.author}", :align => :center
+					output.text "This report was prepared by\n#{NessusReport.author}", :align => :center
 				end
 
 				output.text "\n\n\n"

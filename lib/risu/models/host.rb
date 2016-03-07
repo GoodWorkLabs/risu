@@ -610,7 +610,7 @@ module Risu
 					w2k12_percent = (w2k12.to_f / windows_os_count.to_f) * 100
 
 					text = "This graph shows the percentage of the different Microsoft Windows based operating systems " +
-					"found on the #{Report.title} network.\n\n"
+					"found on the #{NessusReport.title} network.\n\n"
 
 					# @TODO this should be a table sorted by %
 					text << "#{nt_percent.round.to_i}% of the network is Windows NT. " if nt_percent >= 1
@@ -742,7 +742,7 @@ module Risu
 				# @deprecated
 				def other_os_graph_text
 					text = "This graph shows the percentage of the different Non-Windows based operating systems " +
-					"found on the #{Report.title} network.\n\n"
+					"found on the #{NessusReport.title} network.\n\n"
 
 					linux = Host.os_linux.to_a.count
 					osx = Host.os_osx.to_a.count
