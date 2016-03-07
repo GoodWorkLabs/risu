@@ -68,7 +68,7 @@ module Risu
 				end
 
 				create_table :nessus_hosts do |t|
-					t.integer :report_id
+					t.integer :nessus_report_id
 					t.string :name
 					t.string :os
 					t.text :mac, limit: 4294967295

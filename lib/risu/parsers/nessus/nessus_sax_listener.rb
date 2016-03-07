@@ -121,10 +121,10 @@ module Risu
 					"item" => :start_item,
 					"FamilyItem" => :start_family_item,
 					"PluginItem" => :start_plugin_item,
-					"NessusReport" => :start_report,
-					"NessusReportHost" => :start_report_host,
+					"Report" => :start_report,
+					"ReportHost" => :start_report_host,
 					"tag" => :start_tag,
-					"NessusReportItem" => :start_report_item,
+					"ReportItem" => :start_report_item,
 					"attachment" => :start_attachment
 				}
 
@@ -231,7 +231,8 @@ module Risu
 				end
 
 				def start_report(_element, attributes)
-					@report = @policy.reports.create(:name => attributes["name"])
+					puts @policy.nessus_reports
+					@report = @policy.nessus_reports.create(:name => attributes["name"])
 				end
 
 				def start_report_host(_element, attributes)
