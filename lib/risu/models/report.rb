@@ -29,7 +29,7 @@ module Risu
 
 		# NessusReport Model
 		class NessusReport < ActiveRecord::Base
-		  self.table_name = "nessus_NessusReports"
+		  self.table_name = "nessus_reports"
 		  has_many :hosts
 		  belongs_to :policy
 
