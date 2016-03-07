@@ -54,12 +54,12 @@ module Risu
 			# Called during the rendering process
 			#
 			def render(output)
-				text NessusReport.classification.upcase, :align => :center
+				text Report.classification.upcase, :align => :center
 				text "\n"
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Failed Audit Checks"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Failed Audit Checks"
+				report_author "This report was prepared by\n#{Report.author}"
 
 				text "\n\n\n"
 

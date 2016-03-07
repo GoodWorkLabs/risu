@@ -37,7 +37,7 @@ module Risu
 					:author => "Ed Davison <EDavison@getmns.com>",
 					:version => "0.0.4",
 					:renderer => "PDF",
-					:description => "Generates a detailed executive summary NessusReport"
+					:description => "Generates a detailed executive summary report"
 				}
 			end
 
@@ -58,17 +58,17 @@ module Risu
 				output.text "\n"
 
 				output.font_size(24) do
-					output.text NessusReport.title, :align => :center
+					output.text Report.title, :align => :center
 				end
 
 				output.font_size(18) do
-					output.text "Executive Summary NessusReport", :align => :center
+					output.text "Executive Summary Report", :align => :center
 					output.text "\n"
-					output.text "This NessusReport was prepared by\n", :align => :center
-					output.text "#{NessusReport.author}", :align => :center
-					output.text "#{NessusReport.company}", :align => :center
+					output.text "This report was prepared by\n", :align => :center
+					output.text "#{Report.author}", :align => :center
+					output.text "#{Report.company}", :align => :center
 					output.text "\n"
-					output.text "#{NessusReport.scan_date}", :align => :center
+					output.text "#{Report.scan_date}", :align => :center
 					output.text "\n"
 				end
 
@@ -76,13 +76,13 @@ module Risu
 
 				output.start_new_page
 
-				output.font_size(18) { output.text "Executive Summary NessusReport", :align => :center }
+				output.font_size(18) { output.text "Executive Summary Report", :align => :center }
 				output.text "\n"
 
-				output.text "This NessusReport contains the results of a security audit performed on #{NessusReport.scan_date}. It contains confidential information about the state of your network. Access to this information by unauthorized personnel may allow them to compromise your network.\n"
+				output.text "This report contains the results of a security audit performed on #{Report.scan_date}. It contains confidential information about the state of your network. Access to this information by unauthorized personnel may allow them to compromise your network.\n"
 				output.text "\n"
 
-				output.text "The periodic assessment of risk to company assets resulting from the operation of an information system is an important activity required by various audit standards.	 #{NessusReport.company} prepared this Security Assessment NessusReport and it summarizes the risks associated with the vulnerabilities identified during the systems Vulnerability Assessment, audits and any other risk assessment activities.	All results were analyzed to provide an assessment of the management, operational and technical controls implemented to protect the confidentiality, integrity and availability of the system.\n"
+				output.text "The periodic assessment of risk to company assets resulting from the operation of an information system is an important activity required by various audit standards.	 #{Report.company} prepared this Security Assessment Report and it summarizes the risks associated with the vulnerabilities identified during the systems Vulnerability Assessment, audits and any other risk assessment activities.	All results were analyzed to provide an assessment of the management, operational and technical controls implemented to protect the confidentiality, integrity and availability of the system.\n"
 				output.text "\n"
 
 				output.text "Scan Statistics", :style => :bold

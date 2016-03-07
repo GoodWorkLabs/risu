@@ -41,18 +41,18 @@ module Risu
 				}
 			end
 
-			# Renders a Notable Findings NessusReport
+			# Renders a Notable Findings Report
 			def render(output)
-				NessusReport_classification
+				report_classification
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Notable Vulnerabilities"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Notable Vulnerabilities"
+				report_author "This report was prepared by\n#{Report.author}"
 
 				output.text "\n\n\n"
 
 				output.text "Scan Date:", :style => :bold
-				output.text "#{NessusReport.scan_date}"
+				output.text "#{Report.scan_date}"
 				output.text "\n"
 
 				Item.top_10_table(output)

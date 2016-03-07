@@ -37,27 +37,27 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.1",
 					:renderer => "PDF",
-					:description => "Generates NessusReport finding statistics"
+					:description => "Generates report finding statistics"
 				}
 			end
 
 			#
 			#
 			def render(output)
-				output.text NessusReport.classification.upcase, :align => :center
+				output.text Report.classification.upcase, :align => :center
 				output.text "\n"
 
-				output.font_size(22) { output.text NessusReport.title, :align => :center }
+				output.font_size(22) { output.text Report.title, :align => :center }
 				output.font_size(18) {
 					output.text "Finding Statistics", :align => :center
 					output.text "\n"
-					output.text "This NessusReport was prepared by\n#{NessusReport.author}", :align => :center
+					output.text "This report was prepared by\n#{Report.author}", :align => :center
 				}
 
 				output.text "\n\n\n"
 
 				output.text "Scan Date:", :style => :bold
-				output.text "#{NessusReport.scan_date}"
+				output.text "#{Report.scan_date}"
 				output.text "\n"
 
 				headers = ["Number of hosts","Number of risks","High Risks", "Medium Risks", "Low Risks", "Info Risks"]

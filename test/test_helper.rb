@@ -45,7 +45,7 @@ ActiveSupport::TestCase.test_order = :sorted
 
 def config_sqlite
 	{
-		"NessusReport" =>
+		"report" =>
 			{
 				"author" => "TEST",
 				"title" => "TEST",
@@ -62,7 +62,7 @@ end
 
 def config_sqlite_memory
 	{
-		"NessusReport" =>
+		"report" =>
 			{
 				"author" => "TEST",
 				"title" => "TEST",
@@ -79,7 +79,7 @@ end
 
 def config_parser_sqlite
 	{
-		"NessusReport" =>
+		"report" =>
 			{
 				"author" => "TEST",
 				"title" => "TEST",
@@ -96,7 +96,7 @@ end
 
 def config_mysql
 	{
-		"NessusReport" =>
+		"report" =>
 			{
 				"author" => "TEST",
 				"title" => "TEST",
@@ -116,7 +116,7 @@ end
 
 def config_parser_mysql
 	{
-		"NessusReport" =>
+		"report" =>
 			{
 				"author" => "TEST",
 				"title" => "TEST",

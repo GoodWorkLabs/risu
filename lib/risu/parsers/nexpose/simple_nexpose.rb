@@ -49,7 +49,7 @@ module Risu
 				def initialize
 					@vals = Hash.new
 
-					@NessusReport = NessusReport.create
+					@report = Report.create
 				end
 
 				# @TODO comment
@@ -62,7 +62,7 @@ module Risu
 					case element
 						when "device"
 							@in_device = true
-							@rh = @NessusReport.hosts.create
+							@rh = @report.hosts.create
 							@rh.name = attributes["address"]
 							@rh.ip = attributes["address"]
 							@rh.save

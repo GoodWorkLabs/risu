@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
 	s.email = Risu::EMAIL
 
 	s.summary = Risu::APP_NAME
-	s.description = "#{Risu::APP_NAME} is a Nessus .nessus XML parser and NessusReport generation tool"
+	s.description = "#{Risu::APP_NAME} is a Nessus .nessus XML parser and report generation tool"
 	s.license = "BSD"
 
 	s.files	= Dir['[A-Z]*'] + Dir['lib/**/*'] + ['risu.gemspec']

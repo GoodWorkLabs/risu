@@ -33,13 +33,13 @@ class FindingsSummaryTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "/tmp/findings_summary.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("findings_summary", NessusReport, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("findings_summary", Report, @file_name, @template_manager)
 
-		@NessusReport = NessusReport
-		@NessusReport.title = "Function Test"
-		@NessusReport.author = "hammackj"
-		@NessusReport.company = "None"
-		@NessusReport.classification = "None"
+		@report = Report
+		@report.title = "Function Test"
+		@report.author = "hammackj"
+		@report.company = "None"
+		@report.classification = "None"
 	end
 
 	def teardown

@@ -34,13 +34,13 @@ class AssetsTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/assets.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@NessusReport = NessusReport
-		@NessusReport.title = "Assets Template Test"
-		@NessusReport.author = "hammackj"
-		@NessusReport.company = "None"
-		@NessusReport.classification = "None"
+		@report = Report
+		@report.title = "Assets Template Test"
+		@report.author = "hammackj"
+		@report.company = "None"
+		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("assets", NessusReport, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("assets", Report, @file_name, @template_manager)
 		@templater.generate
 	end
 

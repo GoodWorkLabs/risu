@@ -37,21 +37,21 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.2",
 					:renderer => "PDF",
-					:description => "Generates a Microsoft Update Summary NessusReport"
+					:description => "Generates a Microsoft Update Summary Report"
 				}
 			end
 
 			#
 			#
 			def render(output)
-				output.text NessusReport.classification.upcase, :align => :center
+				output.text Report.classification.upcase, :align => :center
 				output.text "\n"
 
-				output.font_size(22) { output.text NessusReport.title, :align => :center }
+				output.font_size(22) { output.text Report.title, :align => :center }
 				output.font_size(18) {
 					output.text "Microsoft Update Summary", :align => :center
 					output.text "\n"
-					output.text "This NessusReport was prepared by\n#{NessusReport.author}", :align => :center
+					output.text "This report was prepared by\n#{Report.author}", :align => :center
 				}
 
 				output.text "\n\n\n"

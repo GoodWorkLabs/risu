@@ -33,7 +33,7 @@ module Risu
 			include SharesTemplateHelper
 
 			#
-			def NessusReport_classification classification=NessusReport.classification.upcase, newline=true
+			def report_classification classification=Report.classification.upcase, newline=true
 				@output.font_size(12) do
 					@output.text classification, :align => :center
 					@output.text "\n" if newline
@@ -41,7 +41,7 @@ module Risu
 			end
 
 			#
-			def NessusReport_title title, newline=false
+			def report_title title, newline=false
 				@output.font_size(24) do
 					@output.text title, :align => :center
 					@output.text "\n" if newline
@@ -49,7 +49,7 @@ module Risu
 			end
 
 			#
-			def NessusReport_subtitle title, newline=false
+			def report_subtitle title, newline=false
 				@output.font_size(18) do
 					@output.text title, :align => :center
 					@output.text "\n" if newline
@@ -57,7 +57,7 @@ module Risu
 			end
 
 			#
-			def NessusReport_author author, newline=false
+			def report_author author, newline=false
 				@output.font_size(14) do
 					@output.text author, :align => :center
 					@output.text "\n" if newline

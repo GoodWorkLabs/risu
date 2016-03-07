@@ -27,7 +27,7 @@
 module Risu
 	module Base
 
-		# Base template class, all NessusReport templates must be a subclass of this.
+		# Base template class, all report templates must be a subclass of this.
 		#
 		class TemplateBase
 			

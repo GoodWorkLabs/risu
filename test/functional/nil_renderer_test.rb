@@ -67,11 +67,11 @@ class NilRendererTest < ActiveSupport::TestCase
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 		@template_manager.registered_templates << @template
 
-		@NessusReport = NessusReport
-		@NessusReport.title = "NilRenderer Test"
-		@NessusReport.author = "hammackj"
-		@NessusReport.company = "None"
-		@NessusReport.classification = "None"
+		@report = Report
+		@report.title = "NilRenderer Test"
+		@report.author = "hammackj"
+		@report.company = "None"
+		@report.classification = "None"
 	end
 
 	def teardown
@@ -80,7 +80,7 @@ class NilRendererTest < ActiveSupport::TestCase
 
 	test 'should fail to create nilrenderer_tempalte.pdf on template creation' do
 		assert_raise NoMethodError do
-			@templater = Risu::Base::Templater.new("nil_renderer_template", NessusReport, @file_name, @template_manager)
+			@templater = Risu::Base::Templater.new("nil_renderer_template", Report, @file_name, @template_manager)
 			@templater.generate
 		end
 
@@ -89,7 +89,7 @@ class NilRendererTest < ActiveSupport::TestCase
 
 	test 'should raise an exception' do
 		assert_raise NoMethodError do
-			@templater = Risu::Base::Templater.new("nil_renderer_template", NessusReport, @file_name, @template_manager)
+			@templater = Risu::Base::Templater.new("nil_renderer_template", Report, @file_name, @template_manager)
 			@templater.generate
 		end
 	end

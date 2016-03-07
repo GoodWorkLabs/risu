@@ -91,7 +91,7 @@ module Risu
         w2k12_percent = (w2k12.to_f / windows_os_count.to_f) * 100
 
         text = "This graph shows the percentage of the different Microsoft Windows based operating systems " +
-        "found on the #{NessusReport.title} network.\n\n"
+        "found on the #{Report.title} network.\n\n"
 
         text << "#{nt_percent.round.to_i}% of the network is Windows NT. " if nt_percent >= 1
         text << "#{w2k_percent.round.to_i}% of the network is Windows 2000. " if w2k_percent >= 1

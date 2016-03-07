@@ -1,3 +1,3 @@
-NessusReport:
-  name: A fake NessusReport name
+report:
+  name: A fake report name
   policy_id: policy

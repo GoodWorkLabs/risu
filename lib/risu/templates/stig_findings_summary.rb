@@ -36,19 +36,19 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.5",
 					:renderer => "PDF",
-					:description => "DISA Stig findings summary NessusReport"
+					:description => "DISA Stig findings summary report"
 				}
 
 				@output = nil
 			end
 
 			def header
-				text NessusReport.classification.upcase, :align => :center
+				text Report.classification.upcase, :align => :center
 				text "\n"
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Stig Findings Summary"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Stig Findings Summary"
+				report_author "This report was prepared by\n#{Report.author}"
 
 				text "\n\n\n"
 			end

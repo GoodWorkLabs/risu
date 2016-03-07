@@ -27,7 +27,7 @@
 module Risu
 	module Base
 
-		# Templater class for generating a NessusReport from a ERB template
+		# Templater class for generating a report from a ERB template
 		class Templater
 			attr_accessor :template, :template_manager, :findings, :output_file
 
@@ -41,7 +41,7 @@ module Risu
 				@template_manager = template_manager
 			end
 
-			# Generates a NessusReport based on the ERB template
+			# Generates a report based on the ERB template
 			def generate
 				begin
 					template = @template

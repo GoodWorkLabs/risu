@@ -38,7 +38,7 @@ module Risu
 				# @TODO automate references to parser references to see if all are covered
 				#
 				# @returns [String] of all the references with in-line formatting for
-				# direct output to the NessusReport
+				# direct output to the report
 				def reference_string
 					reference_names = ["cve", "cpe", "bid", "see_also", "iava", "msft",
 						"osvdb", "cert", "edbid", "rhsa", "secunia", "suse", "dsa",

@@ -36,17 +36,17 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.2",
 					:renderer => "PDF",
-					:description => "Generates a Microsoft Patch Summary NessusReport"
+					:description => "Generates a Microsoft Patch Summary Report"
 				}
 			end
 
 			def render(output)
-				text NessusReport.classification.upcase, :align => :center
+				text Report.classification.upcase, :align => :center
 				text "\n"
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Missing Microsoft Patch Summary"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Missing Microsoft Patch Summary"
+				report_author "This report was prepared by\n#{Report.author}"
 
 				text "\n\n\n"
 

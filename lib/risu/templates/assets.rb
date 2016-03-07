@@ -36,17 +36,17 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.3",
 					:renderer => "PDF",
-					:description => "Generates a Assets Summary NessusReport"
+					:description => "Generates a Assets Summary Report"
 				}
 			end
 
 			def render(output)
-				text NessusReport.classification.upcase, :align => :center
+				text Report.classification.upcase, :align => :center
 				text "\n"
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Networked Assets"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Networked Assets"
+				report_author "This report was prepared by\n#{Report.author}"
 
 				text "\n\n\n"
 

@@ -35,13 +35,13 @@ class FindingsSummaryPluginIDTemplateTest < ActiveSupport::TestCase
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
 
-		@NessusReport = NessusReport
-		@NessusReport.title = "Function Test"
-		@NessusReport.author = "hammackj"
-		@NessusReport.company = "None"
-		@NessusReport.classification = "None"
+		@report = Report
+		@report.title = "Function Test"
+		@report.author = "hammackj"
+		@report.company = "None"
+		@report.classification = "None"
 
-		@templater = Risu::Base::Templater.new("findings_summary_with_pluginid", @NessusReport, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("findings_summary_with_pluginid", @report, @file_name, @template_manager)
 	end
 
 	def teardown

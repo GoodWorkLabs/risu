@@ -36,7 +36,7 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.9",
 					:renderer => "PDF",
-					:description => "Generates a Technical Findings NessusReport"
+					:description => "Generates a Technical Findings Report"
 				}
 			end
 
@@ -89,12 +89,12 @@ module Risu
 			end
 
 			def render(output)
-				text NessusReport.classification.upcase, :align => :center
+				text Report.classification.upcase, :align => :center
 				text "\n"
 
-				NessusReport_title NessusReport.title
-				NessusReport_subtitle "Technical Findings"
-				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
+				report_title Report.title
+				report_subtitle "Technical Findings"
+				report_author "This report was prepared by\n#{Report.author}"
 				text "\n\n\n"
 
 				# If you uncomment the med/low change the true in high to false for a new page after it

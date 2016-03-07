@@ -36,7 +36,7 @@ module Risu
 			def initialize
 				@options = {}
 				@database = {}
-				@NessusReport = {}
+				@report = {}
 				@blacklist = {}
 
 				@options[:debug] = false
@@ -54,7 +54,7 @@ module Risu
 			# @param file Path to configuration file
 			def create_config(file=CONFIG_FILE)
 				File.open(file, 'w+') do |f|
-					f.write("NessusReport:\n")
+					f.write("report:\n")
 					f.write("  author: \n")
 					f.write("  title: \n")
 					f.write("  company: \n")
@@ -84,14 +84,14 @@ module Risu
 						end
 
 						@database = yaml["database"]
-						@NessusReport = yaml["NessusReport"]
+						@report = yaml["report"]
 
 						puts @database.inspect if @options[:debug]
 
 						#If no values were entered put a default value in
-						@NessusReport.each do |k, v|
+						@report.each do |k, v|
 							if v == nil
-								@NessusReport[k] = "No #{k}"
+								@report[k] = "No #{k}"
 							end
 						end
 					rescue => e
@@ -234,13 +234,13 @@ module Risu
 						end
 
 						opt.separator('')
-						opt.separator("NessusReporting Options")
+						opt.separator("Reporting Options")
 
 						opt.on('-t', '--template FILE', 'The filename of the template to use') do |option|
 							@options[:template] = option
 						end
 
-						opt.on('-o', '--output-file FILE', 'The filename to output the generated NessusReport to') do |option|
+						opt.on('-o', '--output-file FILE', 'The filename to output the generated report to') do |option|
 							@options[:output_file] = option
 						end
 
@@ -397,13 +397,13 @@ module Risu
 						exit
 					end
 
-					@findings = NessusReport
+					@findings = Report
 
-					@findings.author = @NessusReport["author"]
-					@findings.title = @NessusReport["title"]
-					@findings.company = @NessusReport["company"]
-					@findings.classification = @NessusReport["classification"]
-					@findings.extra = @NessusReport
+					@findings.author = @report["author"]
+					@findings.title = @report["title"]
+					@findings.company = @report["company"]
+					@findings.classification = @report["classification"]
+					@findings.extra = @report
 
 					template = Templater.new(@options[:template], @findings, @options[:output_file], @template_manager)
 					template.generate

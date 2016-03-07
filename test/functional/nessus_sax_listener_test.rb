@@ -49,8 +49,8 @@
 					end
 				end
 
-				xml.NessusReport(:name => "NessusReportname") do
-					xml.NessusReportHost(:name => "69.69.69.69") do
+				xml.Report(:name => "Reportname") do
+					xml.ReportHost(:name => "69.69.69.69") do
 						xml.HostProperties do
 							xml.tag(:name => "#{property}") do
 								xml.text "#{value}"
@@ -81,7 +81,7 @@
 							end
 						end
 
-						xml.NessusReportItem(:port => "88", :svc_name => "kerberos?", :protocol => "tcp", :severity => "0", :pluginName => "Test Plugin", :pluginFamily => "Test Family", :pluginID =>"999999") do
+						xml.ReportItem(:port => "88", :svc_name => "kerberos?", :protocol => "tcp", :severity => "0", :pluginName => "Test Plugin", :pluginFamily => "Test Family", :pluginID =>"999999") do
 							xml.xref "MSFT:MS00-000"
 							xml.xref "cert-cc:CA-1997-22"
 							xml.send(:"cert-cc", "CA-1997-22")
