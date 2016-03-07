@@ -51,12 +51,12 @@ module Risu
 				text "\n"
 				text "\n"
 
-				text Report.classification.upcase, :align => :center
+				text NessusReport.classification.upcase, :align => :center
 				text "\n"
 
-				report_title Report.title
-				report_subtitle "Coversheet Example"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Coversheet Example"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 
 				text "\n\n\n"
 

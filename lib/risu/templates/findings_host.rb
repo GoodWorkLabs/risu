@@ -38,7 +38,7 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.3",
 					:renderer => "PDF",
-					:description => "Generates a findings report by host"
+					:description => "Generates a findings NessusReport by host"
 				}
 			end
 
@@ -47,11 +47,11 @@ module Risu
 			def render(output)
 				@output.font_size 10
 
-				report_classification
+				NessusReport_classification
 
-				report_title Report.title
-				report_subtitle "Findings Summary by Host Report"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Findings Summary by Host NessusReport"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 
 				@output.text "\n\n\n"
 

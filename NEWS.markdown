@@ -5,7 +5,7 @@
 - **API CHANGES** Several APIs have been marked deprecated they will be moved in 1.8.0. Stubs will be left behind with warnings until 1.9.0. These changes are mostly to clean up the Models. Right now the models are very fat and interdependent on things they shouldn't. Some of the notable changes will be:
 	- Graphs will be moved to Risu::Graphs
 	- TemplateHelpers will be moved to Risu::TemplateHelpers
-- When new tags are encountered they are reported after each file now, as a uniqued list. This removes the spam of new tags.
+- When new tags are encountered they are NessusReported after each file now, as a uniqued list. This removes the spam of new tags.
 - Updated the dependent gems to the latest versions and removed exact version pinning.
 	- rails 4.2.5
 	- libxml-ruby 2.8.0
@@ -126,7 +126,7 @@
 		- Added glsa.
 		- Added freebsd.
 		- *Experimental Post Processing*, Sums up the findings and removes the duplicates. This allows for cleaner
-			authenticated reports. Very experimental at the moment, the are auto loaded from the same directories as templates
+			authenticated NessusReports. Very experimental at the moment, the are auto loaded from the same directories as templates
 			for the time being
 	- Use of the --post-process command line option will turn this on and off
 	- Java Plugins
@@ -158,14 +158,14 @@
 			- The user directory of ~/.risu/templates/
 	- Added host_findings_csv.rb template
 	- Added "Failed compliance audits" template [abenson]
-	- Added "Exploitablity Summary Report" template
-	- Added "Talking Points Report" template
-	- Added "Missing Root Cause Report" template
+	- Added "Exploitablity Summary NessusReport" template
+	- Added "Talking Points NessusReport" template
+	- Added "Missing Root Cause NessusReport" template
 	- Templates must now specify their renderer :renderer => "PDF" or :renderer => "CSV" in the template_info section.
 		This will break all templates until it is added.
 	- Template Helper
 		- Added a table method to generate a table in 1 line of code
-		- Added a new_page method to create a page break in the report
+		- Added a new_page method to create a page break in the NessusReport
 		- Added other_os_graph_page, This generates a page for the PDF renderer with the
 			other_os_graph and other_os_graph_text followed by a new_page
 		- item_count_by_plugin_name
@@ -224,17 +224,17 @@
 		- Initial RiskScore plugin to calculate a risk score for Plugins / Findings / Hosts
 
 #1.6.2 (March 13, 2013)
-- pci_compliance template - Corrected a bug that prevented it from working. Reported by [jkordish]
-- Added Report.extra to contain any extra risu.config yaml settings to be passed to a report
+- pci_compliance template - Corrected a bug that prevented it from working. NessusReported by [jkordish]
+- Added NessusReport.extra to contain any extra risu.config yaml settings to be passed to a NessusReport
 	- Check for nil before using it!
-	- It will contain all tags in the report: section of the config file
+	- It will contain all tags in the NessusReport: section of the config file
 
 #1.6.1 (March 1, 2013)
 - Models
 	- Reference Model
 		- Added usn
 	- HostProperty Model ***NEW***
-		- New model for each HostProperty off of ReportHost
+		- New model for each HostProperty off of NessusReportHost
 		- The table is name / value for each property
 		- All netstat / traceroute tags will be in this new table there can be up to 65k entries for each protocol and 255 traceroute entries per host
 
@@ -245,11 +245,11 @@
 - Fixed several missing requires for Sqlite3 and Rails
 - Default template font size is now 10pt
 - Added TemplateHelper mixin for templates to use. The goal is to abstract Prawn in-line code out of the templates over the next few releases to allow for dynamic output to different formats.Currently it adds the following methods to each template it is included in:
-	- report_title(title, newline=false) #font size 24 + bold + center
-	- report_subtitle(title, newline=false) #font size 18 + bold + center
-	- report_author(author, newline=false) #font size 24 + bold + center
-	- report_classification(classification=Report.classification.upcase, newline=true)
-	- report_text(text, options={})
+	- NessusReport_title(title, newline=false) #font size 24 + bold + center
+	- NessusReport_subtitle(title, newline=false) #font size 18 + bold + center
+	- NessusReport_author(author, newline=false) #font size 24 + bold + center
+	- NessusReport_classification(classification=NessusReport.classification.upcase, newline=true)
+	- NessusReport_text(text, options={})
 	- heading1 #font size 24 + bold
 	- heading2 #font size 18 + bold
 	- heading3 #font size 14 + bold
@@ -345,7 +345,7 @@
 		- Added cert_vu() method
 - Switched from the 'mysql' gem to the 'mysql2' gem for better rails3 support with mysql databases
 	- Note: **This means you need to specify mysql2 as the database adapter**
-- Fixed Ticket #57, which had a sqlite specific query, breaking the query on MySql. Reported by Drew Brunson
+- Fixed Ticket #57, which had a sqlite specific query, breaking the query on MySql. NessusReported by Drew Brunson
 - A few typos and spelling errors corrected
 - Added some PRAGMA's that might speed up SQLite3 usage. If it is still to slow (on insert) It is recommended to use MySQL.
 
@@ -376,9 +376,9 @@
 	- cisco-sr as a reference
 	- always_run added to the Item Model (Related to a Registry Svc Check)
 - Spell-checked all of the templates and fixed some spelling issues
-- Added a template for the WSUS Patch Management Report Nessus Plugin ID: 58133
+- Added a template for the WSUS Patch Management NessusReport Nessus Plugin ID: 58133
 - In the -v, --version option displays the version of ruby and the version of rubygems
-- Thank you to everyone that has submitted new tags/bug reports/etc
+- Thank you to everyone that has submitted new tags/bug NessusReports/etc
 - Also Thank you for all the kind words related to the tool also.
 - Known Issues
 	- Sqlite3 is really slow when parsing, This seems to be a known Sqlite issue.
@@ -430,13 +430,13 @@
 - Added test::unit tests for most of the specs
 
 #1.4.9 (January 23, 2012)
-- Added a simple notable vulnerability template table report
-- Added a detailed notable vulnerability template like the technical_findings report just limited to the top vulnerabilities up to 10
+- Added a simple notable vulnerability template table NessusReport
+- Added a detailed notable vulnerability template like the technical_findings NessusReport just limited to the top vulnerabilities up to 10
 - API for the top 10 vulnerabilities can be found on the Item model
 	- top_10_sorted_raw(), returns the top 10 vulnerabilities in an Array sorted in the form of [plugin_id, count]
 	- top_10_sorted(), returns the top 10 vulnerabilities in an Array sorted in the form of [name, count]
 	- top_10_table(output), inserts a table into the output parameter object with the top 10 data using the top_10_sorted() method
-- All report template classification headers are forced upper case
+- All NessusReport template classification headers are forced upper case
 - Added 6 PCI related fields
 	- pcidss:directory_browsing
 	- pcidss:known_credentials
@@ -449,20 +449,20 @@
 	- exploithub_sku
 	- stig_severity
 - Item.risks_by_host now only returns High findings. New accessors for each level will be added for 1.5 with support for the next version of Nessus
-- Fixed a bug on the exec_summary_detailed detailed report
+- Fixed a bug on the exec_summary_detailed detailed NessusReport
 - A quick reference for Microsoft findings can now be found in the Patch model,
 You are able to get host_id, name(patch name, ie MS01-001), value (plugin_id)
-- Please report any missing tags that risu outputs to risu[@]arxopia[.]com, I expect a ton of Microsoft Patch tags missing
+- Please NessusReport any missing tags that risu outputs to risu[@]arxopia[.]com, I expect a ton of Microsoft Patch tags missing
 
 #1.4.8 (August 21, 2011)
-- Fixed a gemspec dependency error reported by mlpotgieter
-- Fixed a parser error related to Microsoft Bulletins report by stevelodin
+- Fixed a gemspec dependency error NessusReported by mlpotgieter
+- Fixed a parser error related to Microsoft Bulletins NessusReport by stevelodin
 - Added a Table for all host related patches, currently only has Microsoft Bulletins
 You can access it via `Host.first.patches` or `Patch.all`
-- Please report any missing tags that risu outputs to risu[@]arxopia[.]com, I expect a ton of Microsoft Patch tags missing
+- Please NessusReport any missing tags that risu outputs to risu[@]arxopia[.]com, I expect a ton of Microsoft Patch tags missing
 
 #1.4.7 (August 13, 2011)
-- Fixed issue #39 Ruby 1.8.7 Syntax error reported by mlpotgieter
+- Fixed issue #39 Ruby 1.8.7 Syntax error NessusReported by mlpotgieter
 - Ruby 1.8.7 will no longer be supported in v1.5, please upgrade your ruby installs.
 
 #1.4.6 (July 12, 2011)
@@ -478,7 +478,7 @@ You can access it via `Host.first.patches` or `Patch.all`
 - Updated the Severity Graph and added some auto generated text based on the graph percentages
 - Added a method to generate text for the other_os_graph
 - Added a method to generate text for the windows_os_graph
-- Added some auto generated text for unsupported operating systems to put into a report.
+- Added some auto generated text for unsupported operating systems to put into a NessusReport.
 - Added AIX named_scopes on the Host model (os_aix and not_os_aix)
 - Unified the colors to be the same for all the graphs
 - Added validation of the XML files for Nessus Documents
@@ -513,7 +513,7 @@ You can access it via `Host.first.patches` or `Patch.all`
 
 - Added a fix for all of the MSXX-XXX Host Properties tags that don't serve any purpose
 - Added sqlite3 as an install dependency to help with sqlite usage
-- Fixed a privately report bug with the *_risks_unique_sorted* functions not working on MySQL
+- Fixed a privately NessusReport bug with the *_risks_unique_sorted* functions not working on MySQL
 
 # 1.4.1 (May 10, 2011)
 
@@ -545,17 +545,17 @@ You can access it via `Host.first.patches` or `Patch.all`
 	- Findings Summary
 	- Cover Sheet example
 - Updated more yardoc documentation
-- Reports
+- NessusReports
 	- Set a default font size of 12
 	- Set default margins of 50,75,50,75
 	- Cleaned up the graphs to be a little easier to read
 - Added significantly more error checking to the command line	application
-- Updated the config file format to handle all of the report generation options as well as the database configuration options
+- Updated the config file format to handle all of the NessusReport generation options as well as the database configuration options
 - Added a command line option for passing it a config file to use instead of forcing the default ./risu.cfg
 - Migrated to OptionParser Choice seems to be an abandoned gem with bugs
 - Updated all the Migration code to use the new AR3 format
 
-- Special thanks to **Ed Davison** for numerous bug reports and template testing.
+- Special thanks to **Ed Davison** for numerous bug NessusReports and template testing.
 - Special thanks to **Andrew Benson** for helping track down a major ActiveRecord bug.
 
 # 1.2.0 (February 13, 2011)
@@ -571,8 +571,8 @@ You can access it via `Host.first.patches` or `Patch.all`
 
 # 1.1.0 (October 22, 2010)
 - Fixed a typo on the classification argument
-- Added a assets report template
-- Added a simple PCI/DSS compliance report template (Requires Nessus Professional Feed for the plugin)
+- Added a assets NessusReport template
+- Added a simple PCI/DSS compliance NessusReport template (Requires Nessus Professional Feed for the plugin)
 - Updated the parser to take into account the new fields
 	- HostProperties attribute: pci-dss-compliance
 	- New XML element: exploitability_ease.

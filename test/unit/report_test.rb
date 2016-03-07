@@ -26,18 +26,18 @@
 
 require 'test_helper'
 
-class ReportTest < ActiveSupport::TestCase
+class NessusReportTest < ActiveSupport::TestCase
 	def setup
 		setup_test_database
 	end
 
 	test "should have a scan_date of Fri May 13 17:52:18 -0500 2011" do
-		assert_instance_of Time, Report.scan_date, "GOT #{Report.scan_date.class}"
-		assert Report.scan_date.strftime("%a %B %d, %Y") == "Fri May 13, 2011", "GOT #{Report.scan_date.strftime("%a %B %d, %Y")}"
+		assert_instance_of Time, NessusReport.scan_date, "GOT #{NessusReport.scan_date.class}"
+		assert NessusReport.scan_date.strftime("%a %B %d, %Y") == "Fri May 13, 2011", "GOT #{NessusReport.scan_date.strftime("%a %B %d, %Y")}"
 	end
 
-	test "Report.scanner_nessus_ratings_text length should be 1537" do
-		Report.company = ""
-		assert Report.scanner_nessus_ratings_text.length == 1537, "GOT #{Report.scanner_nessus_ratings_text.length}"
+	test "NessusReport.scanner_nessus_ratings_text length should be 1537" do
+		NessusReport.company = ""
+		assert NessusReport.scanner_nessus_ratings_text.length == 1537, "GOT #{NessusReport.scanner_nessus_ratings_text.length}"
 	end
 end

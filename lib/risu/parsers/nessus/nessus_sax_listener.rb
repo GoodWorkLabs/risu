@@ -65,13 +65,13 @@ module Risu
 
 				# An array of all valid elements expected during parsing
 				VALID_ELEMENTS = VALID_REFERENCES \
-					+ Set.new(%w[ReportItem plugin_version risk_factor
+					+ Set.new(%w[NessusReportItem plugin_version risk_factor
 					description cvss_base_score solution item plugin_output tag synopsis plugin_modification_date
-					FamilyName FamilyItem Status vuln_publication_date ReportHost HostProperties preferenceName
+					FamilyName FamilyItem Status vuln_publication_date NessusReportHost HostProperties preferenceName
 					preferenceValues preferenceType fullName pluginId pluginName selectedValue selectedValue
 					name value preference plugin_publication_date cvss_vector patch_publication_date
 					NessusClientData_v2 Policy PluginName ServerPreferences policyComments policyName PluginItem
-					Report Family Preferences PluginsPreferences FamilySelection IndividualPluginSelection PluginId
+					NessusReport Family Preferences PluginsPreferences FamilySelection IndividualPluginSelection PluginId
 					pci-dss-compliance exploitability_ease cvss_temporal_vector exploit_framework_core cvss_temporal_score
 					exploit_available metasploit_name exploit_framework_canvas canvas_package exploit_framework_metasploit
 					plugin_type exploithub_sku exploit_framework_exploithub stig_severity plugin_name fname always_run
@@ -121,10 +121,10 @@ module Risu
 					"item" => :start_item,
 					"FamilyItem" => :start_family_item,
 					"PluginItem" => :start_plugin_item,
-					"Report" => :start_report,
-					"ReportHost" => :start_report_host,
+					"NessusReport" => :start_NessusReport,
+					"NessusReportHost" => :start_NessusReport_host,
 					"tag" => :start_tag,
-					"ReportItem" => :start_report_item,
+					"NessusReportItem" => :start_NessusReport_item,
 					"attachment" => :start_attachment
 				}
 
@@ -148,7 +148,7 @@ module Risu
 					"FamilyItem" => :end_family_item,
 					"PluginItem" => :end_plugin_item,
 					"tag" => :end_tag,
-					"ReportItem" => :end_report_item,
+					"NessusReportItem" => :end_NessusReport_item,
 					"attachment" => :end_attachment
 				}
 
@@ -171,7 +171,7 @@ module Risu
 					@vals[@tag] = ""
 
 					if !VALID_ELEMENTS.include?(element)
-						@new_tags << "New XML element detected: #{element}. Please report this at #{Risu::GITHUB}/issues/new or via email to #{Risu::EMAIL}"
+						@new_tags << "New XML element detected: #{element}. Please NessusReport this at #{Risu::GITHUB}/issues/new or via email to #{Risu::EMAIL}"
 					end
 
 					if DYNAMIC_START_METHOD_NAMES.key?(element)
@@ -230,12 +230,12 @@ module Risu
 					@plugin_selection = @policy.individual_plugin_selections.create
 				end
 
-				def start_report(_element, attributes)
-					@report = @policy.reports.create(:name => attributes["name"])
+				def start_NessusReport(_element, attributes)
+					@NessusReport = @policy.NessusReports.create(:name => attributes["name"])
 				end
 
-				def start_report_host(_element, attributes)
-					@rh = @report.hosts.create(:name => attributes["name"])
+				def start_NessusReport_host(_element, attributes)
+					@rh = @NessusReport.hosts.create(:name => attributes["name"])
 				end
 
 				def start_tag(_, attributes)
@@ -261,11 +261,11 @@ module Risu
 					if attributes["name"] !~ /(netstat-(?:established|listen)-(?:tcp|udp)\d+-\d+)/ \
 							&& attributes["name"] !~ /traceroute-hop-\d+/ \
 							&& @attr.nil?
-						@new_tags << "New HostProperties attribute: #{attributes["name"]}. Please report this at #{Risu::GITHUB}/issues/new or via email to #{Risu::EMAIL}\n"
+						@new_tags << "New HostProperties attribute: #{attributes["name"]}. Please NessusReport this at #{Risu::GITHUB}/issues/new or via email to #{Risu::EMAIL}\n"
 					end
 				end
 
-				def start_report_item(_element, attributes)
+				def start_NessusReport_item(_element, attributes)
 					@vals = Hash.new # have to clear this out or everything has the same references
 
 					if attributes["pluginID"] == "0"
@@ -359,15 +359,15 @@ module Risu
 					end
 				end
 
-				#We cannot handle the references in the same block as the rest of the ReportItem tag because
-				#there tends to be more than of the different types of reference per ReportItem, this causes issue for a sax
+				#We cannot handle the references in the same block as the rest of the NessusReportItem tag because
+				#there tends to be more than of the different types of reference per NessusReportItem, this causes issue for a sax
 				#parser. To solve this we do the references before the final plugin data, Valid references must be added
 				#the VALID_REFERENCE set at the top to be parsed.
 				def end_valid_reference(element)
 					@ref = @plugin.references.create(:reference_name => element, :value => @vals["#{element}"])
 				end
 
-				def end_report_item(_)
+				def end_NessusReport_item(_)
 					@ri.update(:plugin_output => @vals["plugin_output"],
 						:plugin_name => @vals["plugin_name"],
 						:cm_compliance_info => @vals["cm:compliance-info"],

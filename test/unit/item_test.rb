@@ -30,11 +30,11 @@ class ItemTest < ActiveSupport::TestCase
 	def setup
 		setup_test_database
 
-		@report = Report
-		@report.title = "Test"
-		@report.author = "hammackj"
-		@report.company = "None"
-		@report.classification = "None"
+		@NessusReport = NessusReport
+		@NessusReport.title = "Test"
+		@NessusReport.author = "hammackj"
+		@NessusReport.company = "None"
+		@NessusReport.classification = "None"
 	end
 
 	test "returns 13 risks for Item.risks.count" do

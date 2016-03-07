@@ -37,7 +37,7 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.1",
 					:renderer => "CSV",
-					:description => "Generates a findings report by host and outputs to CSV"
+					:description => "Generates a findings NessusReport by host and outputs to CSV"
 
 				}
 			end

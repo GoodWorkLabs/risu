@@ -33,7 +33,7 @@ module Risu
 			self.table_name = "nessus_policies"
 			has_many :family_selections
 			has_many :individual_plugin_selections
-			has_many :reports
+			has_many :NessusReports
 			has_many :plugins_preferences
 			has_many :server_preferences
 		end

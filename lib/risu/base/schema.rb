@@ -62,13 +62,13 @@ module Risu
 					t.string :status
 				end
 
-				create_table :nessus_reports do |t|
+				create_table :nessus_NessusReports do |t|
 					t.integer :policy_id
 					t.string :name
 				end
 
 				create_table :nessus_hosts do |t|
-					t.integer :report_id
+					t.integer :NessusReport_id
 					t.string :name
 					t.string :os
 					t.text :mac, limit: 4294967295
@@ -224,7 +224,7 @@ module Risu
 				drop_table :nessus_plugins_preferences
 				drop_table :nessus_family_selections
 				drop_table :nessus_individual_plugin_selections
-				drop_table :nessus_reports
+				drop_table :nessus_NessusReports
 				drop_table :nessus_hosts
 				drop_table :nessus_items
 				drop_table :nessus_plugins

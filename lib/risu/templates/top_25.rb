@@ -38,19 +38,19 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.2",
 					:renderer => "PDF",
-					:description => "Generates a Top 25 Remediation report"
+					:description => "Generates a Top 25 Remediation NessusReport"
 				}
 			end
 
 			#
 			#
 			def render(output)
-				text Report.classification.upcase, :align => :center
+				text NessusReport.classification.upcase, :align => :center
 				text "\n"
 
-				report_title Report.title
-				report_subtitle "Top 25 Remediations"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Top 25 Remediations"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 				text "\n\n\n"
 
 				results = Array.new

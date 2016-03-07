@@ -37,24 +37,24 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.3",
 					:renderer => "PDF",
-					:description => "Generates a Host Summary Report"
+					:description => "Generates a Host Summary NessusReport"
 				}
 			end
 
 			#
 			#
 			def render(output)
-				@output.text Report.classification.upcase, :align => :center
+				@output.text NessusReport.classification.upcase, :align => :center
 				@output.text "\n"
 
-				report_title Report.title
-				report_subtitle "Host Summary Report"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Host Summary NessusReport"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 
 				@output.text "\n\n\n"
 
 				@output.text "Scan Date:", :style => :bold
-				@output.text "#{Report.scan_date}"
+				@output.text "#{NessusReport.scan_date}"
 				@output.text "\n"
 
 				results = Array.new

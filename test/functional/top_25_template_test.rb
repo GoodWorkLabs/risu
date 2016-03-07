@@ -34,13 +34,13 @@ class Top25TemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/top25.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
-		@report.title = "Top 25 Test"
-		@report.author = "hammackj"
-		@report.company = "None"
-		@report.classification = "None"
+		@NessusReport = NessusReport
+		@NessusReport.title = "Top 25 Test"
+		@NessusReport.author = "hammackj"
+		@NessusReport.company = "None"
+		@NessusReport.classification = "None"
 
-		@templater = Risu::Base::Templater.new("top_25", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("top_25", NessusReport, @file_name, @template_manager)
 		@templater.generate
 	end
 

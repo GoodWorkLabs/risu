@@ -29,7 +29,7 @@ module Risu
 		class TalkingPoints < Risu::Base::TemplateBase
 			include TemplateHelper
 
-			# Initializes the Talking Points Report
+			# Initializes the Talking Points NessusReport
 			def initialize ()
 				@template_info =
 				{
@@ -37,22 +37,22 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.2",
 					:renderer => "PDF",
-					:description => "Generates a Talking Points Report"
+					:description => "Generates a Talking Points NessusReport"
 				}
 			end
 
-			# Renders the Talking Points Report
+			# Renders the Talking Points NessusReport
 			def render(output)
-				report_classification
+				NessusReport_classification
 
-				report_title Report.title
-				report_subtitle "Talking Points Report"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Talking Points NessusReport"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 
 				@output.text "\n\n\n"
 
 				@output.text "Scan Date:", :style => :bold
-				@output.text "#{Report.scan_date}"
+				@output.text "#{NessusReport.scan_date}"
 				@output.text "\n"
 
 				# Number of hosts / score
@@ -113,29 +113,29 @@ end
 # 		class TalkingPoints < Risu::Base::TemplateBase
 # 			include TemplateHelper
 
-# 			# Initializes the Talking Points Report
+# 			# Initializes the Talking Points NessusReport
 # 			def initialize ()
 # 				@template_info =
 # 				{
 # 					:name => "talking_points",
 # 					:author => "hammackj",
 # 					:version => "0.0.1",
-# 					:description => "Generates a Talking Points Report"
+# 					:description => "Generates a Talking Points NessusReport"
 # 				}
 # 			end
 
-# 			# Renders the Talking Points Report
+# 			# Renders the Talking Points NessusReport
 # 			def render(output)
-# 				report_classification
+# 				NessusReport_classification
 
-# 				report_title Report.title
-# 				report_subtitle "Talking Points Report"
-# 				report_author "This report was prepared by\n#{Report.author}"
+# 				NessusReport_title NessusReport.title
+# 				NessusReport_subtitle "Talking Points NessusReport"
+# 				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 
 # 				@output.text "\n\n\n"
 
 # 				@output.text "Scan Date:", :style => :bold
-# 				@output.text "#{Report.scan_date}"
+# 				@output.text "#{NessusReport.scan_date}"
 # 				@output.text "\n"
 
 # 				# Number of hosts / score

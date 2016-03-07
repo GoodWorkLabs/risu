@@ -427,7 +427,7 @@ module Risu
 					end
 				end
 
-				# @TODO change Report.title to a real variable
+				# @TODO change NessusReport.title to a real variable
 				# @TODO rewrite this
 				# @deprecated
 				def risks_by_severity_graph_text
@@ -436,11 +436,11 @@ module Risu
 					risk_text = risk_text(host_percent)
 
 					graph_text = "This bar graph is a representation of the findings by severity; the " +
-					"graph shows that, overall, #{Report.title} has a #{adjective} handle on the patch " +
+					"graph shows that, overall, #{NessusReport.title} has a #{adjective} handle on the patch " +
 					"management of the network. "
 
 					#graph_text = "This bar graph is a representation of the findings by severity; the " +
-					#{}"graph shows that, Overall #{Report.title} needs to implement patch management and configuration management as a priority."
+					#{}"graph shows that, Overall #{NessusReport.title} needs to implement patch management and configuration management as a priority."
 
 					#if adjective == "good" or adjective == "fair"
 					#	graph_text << "But improvements in patch management could be made to ensure an excellent rating."

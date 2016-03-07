@@ -1,6 +1,6 @@
 # risu [![Gem Version](https://badge.fury.io/rb/risu.png)](http://badge.fury.io/rb/risu) [![Build Status](https://travis-ci.org/arxopia/risu.png?branch=master)](https://travis-ci.org/arxopia/risu)  [![Code Climate](https://codeclimate.com/github/arxopia/risu/badges/gpa.svg)](https://codeclimate.com/github/arxopia/risu) [![Inline docs](http://inch-ci.org/github/arxopia/risu.png)](http://inch-ci.org/github/arxopia/risu) [![Join the chat at https://gitter.im/arxopia/risu](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/arxopia/risu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Risu is [Nessus](http://www.nessus.org) parser, that converts Nessus .nessus xml files into a [ActiveRecord](http://api.rubyonrails.org/classes/ActiveRecord/Base.html) database, this allows for easy report generation and vulnerability verification.
+Risu is [Nessus](http://www.nessus.org) parser, that converts Nessus .nessus xml files into a [ActiveRecord](http://api.rubyonrails.org/classes/ActiveRecord/Base.html) database, this allows for easy NessusReport generation and vulnerability verification.
 
 * [Requirements](#requirements)
 * [Installation](#installation)
@@ -52,7 +52,7 @@ Any database that ActiveRecord supports should work. Risu has been tested with [
 
 ## Usage
 
-The following is some of the basic usage for risu. You must setup the database before you can start parsing in reports. All parsed reports share the same database, so all reports are combined as one inside of a database. I suggest a new database per required assessment.
+The following is some of the basic usage for risu. You must setup the database before you can start parsing in NessusReports. All parsed NessusReports share the same database, so all NessusReports are combined as one inside of a database. I suggest a new database per required assessment.
 
 ### Database Setup
 
@@ -66,7 +66,7 @@ The following is some of the basic usage for risu. You must setup the database b
 
 ### Parsing Nessus Output
 
-	% risu report1.nessus [report2.nessus ...]
+	% risu NessusReport1.nessus [NessusReport2.nessus ...]
 
 1. Parse the files by passing their names on the command line.
 
@@ -74,10 +74,10 @@ The following is some of the basic usage for risu. You must setup the database b
 ## Viewing Data
 The data can be viewed with any query browser available for your database of choice.
 
-### Generating Reports
-To generate a report please execute the following after the the data is parsed into the database.
+### Generating NessusReports
+To generate a NessusReport please execute the following after the the data is parsed into the database.
 
-	% risu -t <TEMPLATE_NAME> -o "REPORT_NAME.pdf"
+	% risu -t <TEMPLATE_NAME> -o "NessusReport_NAME.pdf"
 
 ### Risu Console
 
@@ -94,32 +94,32 @@ Using the risu Console is just like using Rails. You can access all of the Activ
 
 	risu Console v1.7.2
 	>> Host.first
-	=> #<Risu::Models::Host id: 1, report_id: 1, name: "10.69.69.74", os: "Linux Kernel 2.6 on Debian 4.0 (etch)", mac: "XX:XX:XX:XX:XX:XX", start: "2011-04-20 16:29:37", end: "2011-04-20 16:32:14", ip: "10.69.69.74", fqdn: "redada.arxopia.net", netbios: "REDADA", local_checks_proto: nil, smb_login_used: nil, ssh_auth_meth: nil, ssh_login_used: nil, pci_dss_compliance: nil, notes: nil>
+	=> #<Risu::Models::Host id: 1, NessusReport_id: 1, name: "10.69.69.74", os: "Linux Kernel 2.6 on Debian 4.0 (etch)", mac: "XX:XX:XX:XX:XX:XX", start: "2011-04-20 16:29:37", end: "2011-04-20 16:32:14", ip: "10.69.69.74", fqdn: "redada.arxopia.net", netbios: "REDADA", local_checks_proto: nil, smb_login_used: nil, ssh_auth_meth: nil, ssh_login_used: nil, pci_dss_compliance: nil, notes: nil>
 
 ## Templates
 Several templates are included:
 
 	$ risu -l
     Available Templates
-        stig_findings_summary - DISA Stig findings summary report
-        pci_compliance - Generates a PCI Compliance Overview Report
-        technical_findings - Generates a Technical Findings Report
-        ms_patch_summary - Generates a Microsoft Patch Summary Report
+        stig_findings_summary - DISA Stig findings summary NessusReport
+        pci_compliance - Generates a PCI Compliance Overview NessusReport
+        technical_findings - Generates a Technical Findings NessusReport
+        ms_patch_summary - Generates a Microsoft Patch Summary NessusReport
         findings_summary_with_pluginid - Generates a Findings Summary with Nessus Plugin ID
-        findings_host - Generates a findings report by host
+        findings_host - Generates a findings NessusReport by host
         exec_summary - Generates a simple executive summary.
-        finding_statistics - Generates report finding statistics
-        graphs - Generates a report with all the graphs in it
-        findings_summary - Generates a findings summary report
-        assets - Generates a Assets Summary Report
+        finding_statistics - Generates NessusReport finding statistics
+        graphs - Generates a NessusReport with all the graphs in it
+        findings_summary - Generates a findings summary NessusReport
+        assets - Generates a Assets Summary NessusReport
         cover_sheet - Generates a coversheet with a logo (Example Template)
         notable_detailed - Notable Vulnerabilities Detailed
-        ms_update_summary - Generates a Microsoft Update Summary Report
+        ms_update_summary - Generates a Microsoft Update Summary NessusReport
         template - template
         notable - Notable Vulnerabilities
-        ms_wsus_findings - Generates a report based on the findings of the Patch Management: WSUS Report plugin
-        exec_summary_detailed - Generates a detailed executive summary report
-        host_summary - Generates a Host Summary Report
+        ms_wsus_findings - Generates a NessusReport based on the findings of the Patch Management: WSUS NessusReport plugin
+        exec_summary_detailed - Generates a detailed executive summary NessusReport
+        host_summary - Generates a Host Summary NessusReport
 	$
 
 The templates are written in ruby using [prawn](http://prawn.majesticseacreature.com/), they are fairly easy to make. I will add any templates as requested. See the 'template' example for creating your own template.

@@ -44,9 +44,9 @@ end -->
 - Screenshots
 	- Risu Console with Host.first
 	- Risu Command line risu -l
-	- Sample Reports from Metasploitable2 Scan
+	- Sample NessusReports from Metasploitable2 Scan
 		- pngs of a few pages
-		- put sample PDFs in docs/sample_reports
+		- put sample PDFs in docs/sample_NessusReports
 - Create docs/KNOWN_ISSUES.markdown
 	- detail rmagick bug
 	- detail nokogiri warning
@@ -81,7 +81,7 @@ end -->
 - create template -n --new-template cli option, guided INPUT name, author, description via stdin then generate valid template
 - Ability to load templates for the current working directory
 - configuration management
-- optional report prefix in risu.cfg
+- optional NessusReport prefix in risu.cfg
 - Speed of parsing / etc
 - *findings_by_host_summary template*
 	- 1 Host per page
@@ -101,7 +101,7 @@ end -->
         - plugin output
 - add postgres support and tests for it
 - Parse summary # hosts, time / etc
-- ability to query for all remote/local checks and build a report off that
+- ability to query for all remote/local checks and build a NessusReport off that
 - concept of template specific settings in the template file
 - test for Item.notable_order_by_cvss_raw
 	- ensure order is correct
@@ -112,7 +112,7 @@ end -->
 - Risu::Graphs::Malware
 		- Infected vs Non-infected Pie Graph
 		-
-- *Malware report template*
+- *Malware NessusReport template*
 	- Malware plugin ids =
 	- 64687, APT1 malware
 	- 64788, Bit9 signed malware
@@ -122,7 +122,7 @@ end -->
 	- 66391, Linux/Cdorked.A backdoor
 	- XXXXX, Conficker Worm Detection (uncredentialed check)
 	- 70767,
-- tech findings report each host for plugin output
+- tech findings NessusReport each host for plugin output
 - Documents
 	- Template Tutorial
 	- Updating tutorial
@@ -136,11 +136,11 @@ end -->
   - catch mysql cannot connect exception
 - Console
 	- list scan in database via cli
-	- add a way to generate reports from the console
+	- add a way to generate NessusReports from the console
 	- add a way to spawn mysql/psql shell to the database
 	- add tables for the OS data
 	- prompt for password?
-	- generate report based on scan_id/report id
+	- generate NessusReport based on scan_id/NessusReport id
 - finding summary: crit/high spacing
 - filter (uncredentialed check) from the title of MS vulns and put it in the body as a true/false kind of field
 	- remove KB # also
@@ -152,13 +152,13 @@ end -->
 	- test data for References need real reference, for regex check
 - Templates
 	- MS AV errors (52544)
-	- MS Pending Reboot report (35453)
-	- findings by host report
+	- MS Pending Reboot NessusReport (35453)
+	- findings by host NessusReport
 	- unsupported OS first paragraph pluralization
 	- remove ms patches from notable findings
 	- add missing ms patch section
 - Add a filtering system for lowering the rating of plugins based on config
-	- Implement the ability to filter data out of the report
+	- Implement the ability to filter data out of the NessusReport
 		- Filter on
 			- Host Mac Address
 			- Host IP
@@ -171,7 +171,7 @@ end -->
 			- ALLOW CIDR BASED RANGES
 - rewrite text for risks by severity
 - Abstract the api for prawn to support different renders
-- DSL for report creation to abstract the reports to have different output types
+- DSL for NessusReport creation to abstract the NessusReports to have different output types
 - Language abstraction for text generation
 - Look at moving to Nokogiri for xml parsing; http://nokogiri.org if its faster
 - Implement different renderer's
@@ -182,7 +182,7 @@ end -->
 
 ## Ideas
 ### Core
-- bug report info collection option
+- bug NessusReport info collection option
 - Complete comments for all existing code
 - More text generation from graphs
 - pdf bookmarks / Table of Contents
@@ -227,9 +227,9 @@ end -->
 - generate a graph matirx like exec summary detailed
 - malware infection graph
 
-###Reports / Templates
-- Easier way to select the Scan to generate reports from
-- Unsupported OS report
+###NessusReports / Templates
+- Easier way to select the Scan to generate NessusReports from
+- Unsupported OS NessusReport
 	- http://windows.microsoft.com/en-us/windows/lifecycle
 	- XP SP3 = April 8, 2014
 	- Vista SP2 = April 11, 2017
@@ -239,12 +239,12 @@ end -->
 	- 2003 =
 	- 2008 =
 
-- Reports based on audit data
-- Reports for mobile information
-- web server statics report (plugin id)
-- virtual machine stats report (20094)
-- add pdf bookmarks to reports
-- talking point report
+- NessusReports based on audit data
+- NessusReports for mobile information
+- web server statics NessusReport (plugin id)
+- virtual machine stats NessusReport (20094)
+- add pdf bookmarks to NessusReports
+- talking point NessusReport
 - add netbios name to IPs (hostname)
 - add table of contents on the tech findings template
 - better exec template
@@ -254,18 +254,18 @@ end -->
 	- scope
 	- impact of threats (generalized)
 	- graphs
-- SANS TOP XX report
-- Fix list report
+- SANS TOP XX NessusReport
+- Fix list NessusReport
 	- by host ordered by risk
 		- vulnerability name
 		- first cve
 		- Host
 		- vuln name     |   cve
 		- vuln name     |   cve
-- add findings by host report
-- windows policy report
+- add findings by host NessusReport
+- windows policy NessusReport
 - clean up old templates, some are nasty
-- stig detailed report
+- stig detailed NessusReport
 	-http://www.scribd.com/doc/3752867/6/Vulnerability-Severity-Code-Definitions
 	- Category I
 		- Vulnerabilities that allow an attacker immediate access into a machine, allow superuser access, or bypass a firewall.These can lead to the immediate compromise of the web server allowing the attacker to take complete control of the web server and associated operating system, which can then be used as a resource to control other systems in your network.Some examples would be the running of unsupported software, anonymous access to privileged accounts, and the presence of sample applications installed on the web server.
@@ -281,19 +281,19 @@ end -->
 - add more detailed pci templates
 - Provide more templates
 	- Virtual Machine Summary
-	- Fix list Report?
+	- Fix list NessusReport?
 	- Compact the data in tech findings to be more printer friendly
 	- finding summary coversheet looks odd
 	- [TEMPLATE] unsupported OS template
 	- [API] add list of unsupported os ip's accessors
 	- [TEMPLATE] detailed findings should be combined to save paper on printing
-	- Sort Technical Findings Report by count/score
+	- Sort Technical Findings NessusReport by count/score
 	- Add template validation and more error checking
-- Added TOC/Index to the technical findings report, issue 15
+- Added TOC/Index to the technical findings NessusReport, issue 15
 - More text blocks for various plugins services
 - finish implementation of service descriptions
 - outstanding / very good / good / improvement needed / unsatisfactory
-- report type rtf
+- NessusReport type rtf
   Per host
     - scan time start/end
     - remote host info is/netbios/name/dns/ip/mac
@@ -304,7 +304,7 @@ end -->
 		- Add test for new XML element
 		- Add test for new host properties tag
 	- Model Tests
-		- Report
+		- NessusReport
 		- Item
 		- Host
 	- Application specs

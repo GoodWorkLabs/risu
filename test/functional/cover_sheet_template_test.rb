@@ -33,13 +33,13 @@ class CoverSheetTemplateTest < ActiveSupport::TestCase
 		
 		@file_name = "/tmp/coversheet.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
-		@templater = Risu::Base::Templater.new("cover_sheet", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("cover_sheet", NessusReport, @file_name, @template_manager)
 
-		@report = Report
-		@report.title = "Function Test"
-		@report.author = "hammackj"
-		@report.company = "None"
-		@report.classification = "None"
+		@NessusReport = NessusReport
+		@NessusReport.title = "Function Test"
+		@NessusReport.author = "hammackj"
+		@NessusReport.company = "None"
+		@NessusReport.classification = "None"
 	end
 
 	def teardown

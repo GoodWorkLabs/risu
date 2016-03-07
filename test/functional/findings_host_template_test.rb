@@ -34,13 +34,13 @@ class FindingsHostTemplateTest < ActiveSupport::TestCase
 		@file_name = "/tmp/findings_host.pdf"
 		@template_manager = Risu::Base::TemplateManager.new "risu/templates"
 
-		@report = Report
-		@report.title = "Function Test"
-		@report.author = "hammackj"
-		@report.company = "None"
-		@report.classification = "None"
+		@NessusReport = NessusReport
+		@NessusReport.title = "Function Test"
+		@NessusReport.author = "hammackj"
+		@NessusReport.company = "None"
+		@NessusReport.classification = "None"
 
-		@templater = Risu::Base::Templater.new("findings_host", Report, @file_name, @template_manager)
+		@templater = Risu::Base::Templater.new("findings_host", NessusReport, @file_name, @template_manager)
 	end
 
 	def teardown

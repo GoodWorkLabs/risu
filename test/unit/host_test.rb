@@ -30,11 +30,11 @@ class HostTest < ActiveSupport::TestCase
 	def setup
 		setup_test_database
 
-		@report = Report
-		@report.title = "Test"
-		@report.author = "hammackj"
-		@report.company = "None"
-		@report.classification = "None"
+		@NessusReport = NessusReport
+		@NessusReport.title = "Test"
+		@NessusReport.author = "hammackj"
+		@NessusReport.company = "None"
+		@NessusReport.classification = "None"
 	end
 
 	test "returns 10.0.0.1 for Host.ip" do

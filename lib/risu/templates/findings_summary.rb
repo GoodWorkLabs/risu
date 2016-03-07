@@ -36,7 +36,7 @@ module Risu
 					:author => "hammackj",
 					:version => "0.0.3",
 					:renderer => "PDF",
-					:description => "Generates a findings summary report"
+					:description => "Generates a findings summary NessusReport"
 				}
 			end
 
@@ -56,12 +56,12 @@ module Risu
 			end
 
 			def render(output)
-				text Report.classification.upcase, :align => :center
+				text NessusReport.classification.upcase, :align => :center
 				text "\n"
 
-				report_title Report.title
-				report_subtitle "Findings Summary Report"
-				report_author "This report was prepared by\n#{Report.author}"
+				NessusReport_title NessusReport.title
+				NessusReport_subtitle "Findings Summary NessusReport"
+				NessusReport_author "This NessusReport was prepared by\n#{NessusReport.author}"
 				text "\n\n\n"
 
 				print_risk_summary(Item.critical_risks_unique_sorted, "Critical Findings", Risu::GRAPH_COLORS[0])
