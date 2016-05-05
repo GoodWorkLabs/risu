@@ -408,23 +408,22 @@ module Risu
 					template = Templater.new(@options[:template], @findings, @options[:output_file], @template_manager)
 					template.generate
 				end
-
-				ARGV.each do |file|
+				#ARGV.each do |file|
 					begin
-						parse_file file
+						parse_file(ARGV[0], ARGV[1], ARGV[2])
 
 					rescue Risu::Exceptions::InvalidDocument => id
 						puts "[!] #{id.message}"
-						next
+						#next
 					rescue ActiveRecord::StatementInvalid => si
 						puts "[!] Please run #{Risu::APP_NAME} --create-tables, to create the required database schema!"
-						exit
+						#exit
 					rescue => e
 						puts e.inspect
-						puts "[!] Error: #{file}"
-						next
+						puts "[!] Error: #{ARGV[0]}"
+						#next
 					end
-				end
+				#end
 
 				process_post_processing
 			end
@@ -447,11 +446,10 @@ module Risu
 			# Handles the parsing of a single file
 			#
 			# @param file The to parse
-			def parse_file file
+			def parse_file file , user_id, engagement_id
 				begin
 					puts "[*] Parsing #{file}..."
 					tstart = Time.new
-
 					if File.exists?(file) == false
 						raise Risu::Exceptions::InvalidDocument, "[!] Document does not exist - #{file}"
 					end
@@ -460,7 +458,7 @@ module Risu
 					nexpose_doc = Risu::Parsers::Nexpose::NexposeDocument.new file
 
 					if nessus_doc.valid? == true
-						nessus_doc.parse
+						nessus_doc.parse(user_id, engagement_id)
 
 						puts "[*] Fixing IP Address field"
 						nessus_doc.fix_ips

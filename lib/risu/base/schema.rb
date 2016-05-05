@@ -37,6 +37,8 @@ module Risu
 					t.text :comments
 					t.string :owner
 					t.string :visibility
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_server_preferences do |t|

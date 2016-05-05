@@ -149,7 +149,9 @@ module Risu
 					"PluginItem" => :end_plugin_item,
 					"tag" => :end_tag,
 					"NessusReportItem" => :end_report_item,
-					"attachment" => :end_attachment
+					"attachment" => :end_attachment,
+					"userId" => :add_user_id,
+					"engagementId" => :add_engagement_id
 				}
 
 				private_constant :DYNAMIC_END_METHOD_NAMES, :DYNAMIC_START_METHOD_NAMES,
@@ -157,9 +159,12 @@ module Risu
 					:VALID_ELEMENTS, :VALID_REFERENCES
 
 				# vals tracks state for elements encountered during parsing
-				def initialize
+				def initialize(user_id, engagement_id)
 					@vals = Hash.new
 					@new_tags = Array.new
+					puts "[@] #{user_id}"
+					@user_id = user_id
+					@engagement_id = engagement_id
 				end
 
 				# Callback for when the start of a XML element is reached
@@ -205,6 +210,9 @@ module Risu
 					elsif VALID_REFERENCES.include?(element)
 						end_valid_reference(element)
 					end
+
+					add_user_id(@user_id)
+					add_engagement_id(@engagement_id)
 				end
 
 				private
@@ -307,7 +315,18 @@ module Risu
 				end
 
 				def end_visibility(_)
-					@policy.update(:visibility => @vals["visibility"])
+					puts "[%] hi"
+					puts "[$] #{@user_id}"
+					@policy.update(:visibility => @vals["visibility"], :user_id => @user_id)
+				end
+
+				def add_user_id(user_id)
+					puts "[!] #{user_id}"
+					@policy.update(:user_id => user_id)
+				end
+
+				def add_engagement_id(engagement_id)
+					@policy.update(:engagement_id => engagement_id)
 				end
 
 				def end_preference(_)

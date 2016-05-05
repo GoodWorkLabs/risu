@@ -68,9 +68,9 @@ module Risu
 				end
 
 				# Invokes the SAX parser on the XML document
-				def parse
+				def parse user_id , engagement_id
 					@parser = LibXML::XML::SaxParser.file @document
-					@parser.callbacks = NessusSaxListener.new
+					@parser.callbacks = NessusSaxListener.new(user_id, engagement_id)
 					@parser.parse
 
 					#require 'pry'
