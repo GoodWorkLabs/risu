@@ -162,7 +162,6 @@ module Risu
 				def initialize(user_id, engagement_id)
 					@vals = Hash.new
 					@new_tags = Array.new
-					puts "[@] #{user_id}"
 					@user_id = user_id
 					@engagement_id = engagement_id
 				end
@@ -239,7 +238,6 @@ module Risu
 				end
 
 				def start_report(_element, attributes)
-					puts @policy.nessus_reports
 					@report = @policy.nessus_reports.create(:name => attributes["name"])
 				end
 
@@ -276,12 +274,10 @@ module Risu
 
 				def start_report_item(_element, attributes)
 					@vals = Hash.new # have to clear this out or everything has the same references
-					puts "[$]#{attributes.inspect}"
 					if attributes["pluginID"] == "0"
 						@plugin = Risu::Models::Plugin.find_or_create_by(:id => 1)
 					else
 						@plugin = Risu::Models::Plugin.find_or_create_by(:id => attributes["pluginID"]) do |plugin|
-							puts "[*]#{@plugin.inspect}"
 							plugin.plugin_name = attributes["pluginName"]
 							plugin.family_name = attributes["pluginFamily"]
 						end
@@ -316,18 +312,85 @@ module Risu
 				end
 
 				def end_visibility(_)
-					puts "[%] hi"
-					puts "[$] #{@user_id}"
 					@policy.update(:visibility => @vals["visibility"], :user_id => @user_id)
 				end
 
 				def add_user_id(user_id)
-					puts "[!] #{user_id}"
-					@policy.update(:user_id => user_id)
+					unless @policy.blank?
+						@policy.update(:user_id => user_id)
+					end
+					unless @sp.blank?
+						@sp.update(:user_id => user_id)
+					end
+					unless @item.blank?
+						@item.update(:user_id => user_id)
+					end
+					unless @family.blank?
+						@family.update(:user_id => user_id)
+					end
+					unless @plugin_selection.blank?
+						@plugin_selection.update(:user_id => user_id)
+					end
+					unless @report.blank?
+						@report.update(:user_id => user_id)
+					end
+					unless @rh.blank?
+						@rh.update(:user_id => user_id)
+					end
+					unless @hp.blank?
+						@hp.update(:user_id => user_id)
+					end
+					unless @ri.blank?
+						@ri.update(:user_id => user_id)
+					end
+					unless @attachment.blank?
+						@attachment.update(:user_id => user_id)
+					end
+					unless @patch.blank?
+						@patch.update(:user_id => user_id)
+					end
+					unless @ref.blank?
+						@ref.update(:user_id => user_id)
+					end
 				end
 
 				def add_engagement_id(engagement_id)
-					@policy.update(:engagement_id => engagement_id)
+					unless @policy.blank?
+						@policy.update(:engagement_id => engagement_id)
+					end
+					unless @sp.blank?
+						@sp.update(:engagement_id => engagement_id)
+					end
+					unless @item.blank?
+						@item.update(:engagement_id => engagement_id)
+					end
+					unless @family.blank?
+						@family.update(:engagement_id => engagement_id)
+					end
+					unless @plugin_selection.blank?
+						@plugin_selection.update(:engagement_id => engagement_id)
+					end
+					unless @report.blank?
+						@report.update(:engagement_id => engagement_id)
+					end
+					unless @rh.blank?
+						@rh.update(:engagement_id => engagement_id)
+					end
+					unless @hp.blank?
+						@hp.update(:engagement_id => engagement_id)
+					end
+					unless @ri.blank?
+						@ri.update(:engagement_id => engagement_id)
+					end
+					unless @attachment.blank?
+						@attachment.update(:engagement_id => engagement_id)
+					end
+					unless @patch.blank?
+						@patch.update(:engagement_id => engagement_id)
+					end
+					unless @ref.blank?
+						@ref.update(:engagement_id => engagement_id)
+					end
 				end
 
 				def end_preference(_)
@@ -389,7 +452,6 @@ module Risu
 				end
 
 				def end_report_item(_)
-					puts "[&]#{@vals.inspect}"
 					@ri.update(:plugin_output => @vals["plugin_output"],
 						:plugin_name => @vals["plugin_name"],
 						:cm_compliance_info => @vals["cm:compliance-info"],

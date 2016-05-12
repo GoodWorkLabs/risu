@@ -45,6 +45,8 @@ module Risu
 					t.integer :policy_id
 					t.string :name
 					t.text :value, limit: 4294967295
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_plugins_preferences do |t|
@@ -56,17 +58,23 @@ module Risu
 					t.string :preference_type
 					t.string :preference_values
 					t.string :selected_values
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_family_selections do |t|
 					t.integer :policy_id
 					t.string :family_name
 					t.string :status
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_reports do |t|
 					t.integer :policy_id
 					t.string :name
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_hosts do |t|
@@ -81,12 +89,16 @@ module Risu
 					t.string :netbios
 					t.text :notes
 					t.integer :risk_score
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_host_properties do |t|
 					t.integer :host_id
 					t.string :name
 					t.text :value, limit: 4294967295
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_items do |t|
@@ -115,6 +127,8 @@ module Risu
 
 					t.integer :real_severity
 					t.integer :risk_score
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_plugins do |t|
@@ -159,6 +173,8 @@ module Risu
 					t.boolean :exploited_by_nessus
 					t.boolean :unsupported_by_vendor
 					t.boolean :default_account
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_individual_plugin_selections do |t|
@@ -167,12 +183,16 @@ module Risu
 					t.string :plugin_name
 					t.string :family
 					t.string :status
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_references do |t|
 					t.integer :plugin_id
 					t.string :reference_name
 					t.text :value
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_attachments do |t|
@@ -181,22 +201,30 @@ module Risu
 					t.string :ttype
 					t.string :ahash
 					t.text :value
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_versions do |t|
 					t.string :version
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_service_descriptions do |t|
 					t.string :name
 					t.integer :port
 					t.string :description
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				create_table :nessus_patches do |t|
 					t.integer :host_id
 					t.string :name
 					t.string :value
+					t.integer :user_id
+					t.integer :engagement_id
 				end
 
 				#Index's for speed increases, possibly have these apply after parsing @TODO
