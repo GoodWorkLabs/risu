@@ -317,79 +317,85 @@ module Risu
 
 				def add_user_id(user_id)
 					unless @policy.blank?
-						@policy.update(:user_id => user_id)
+						@policy.update(user_id: user_id)
 					end
 					unless @sp.blank?
-						@sp.update(:user_id => user_id)
+						@sp.update(user_id: user_id)
 					end
 					unless @item.blank?
-						@item.update(:user_id => user_id)
+						@item.update(user_id: user_id)
 					end
 					unless @family.blank?
-						@family.update(:user_id => user_id)
+						@family.update(user_id: user_id)
 					end
 					unless @plugin_selection.blank?
-						@plugin_selection.update(:user_id => user_id)
+						@plugin_selection.update(user_id: user_id)
 					end
 					unless @report.blank?
-						@report.update(:user_id => user_id)
+						@report.update(user_id: user_id)
 					end
 					unless @rh.blank?
-						@rh.update(:user_id => user_id)
+						@rh.update(user_id: user_id)
 					end
 					unless @hp.blank?
-						@hp.update(:user_id => user_id)
+						@hp.update(user_id: user_id)
 					end
 					unless @ri.blank?
-						@ri.update(:user_id => user_id)
+						@ri.update(user_id: user_id)
 					end
 					unless @attachment.blank?
-						@attachment.update(:user_id => user_id)
+						@attachment.update(user_id: user_id)
 					end
 					unless @patch.blank?
-						@patch.update(:user_id => user_id)
+						@patch.update(user_id: user_id)
 					end
 					unless @ref.blank?
-						@ref.update(:user_id => user_id)
+						@ref.update(user_id: user_id)
+					end
+					unless @plugin.blank?
+						@plugin.update(user_id: user_id)
 					end
 				end
 
 				def add_engagement_id(engagement_id)
 					unless @policy.blank?
-						@policy.update(:engagement_id => engagement_id)
+						@policy.update(engagement_id: engagement_id)
 					end
 					unless @sp.blank?
-						@sp.update(:engagement_id => engagement_id)
+						@sp.update(engagement_id: engagement_id)
 					end
 					unless @item.blank?
-						@item.update(:engagement_id => engagement_id)
+						@item.update(engagement_id: engagement_id)
 					end
 					unless @family.blank?
-						@family.update(:engagement_id => engagement_id)
+						@family.update(engagement_id: engagement_id)
 					end
 					unless @plugin_selection.blank?
-						@plugin_selection.update(:engagement_id => engagement_id)
+						@plugin_selection.update(engagement_id: engagement_id)
 					end
 					unless @report.blank?
-						@report.update(:engagement_id => engagement_id)
+						@report.update(engagement_id: engagement_id)
 					end
 					unless @rh.blank?
-						@rh.update(:engagement_id => engagement_id)
+						@rh.update(engagement_id: engagement_id)
 					end
 					unless @hp.blank?
-						@hp.update(:engagement_id => engagement_id)
+						@hp.update(engagement_id: engagement_id)
 					end
 					unless @ri.blank?
-						@ri.update(:engagement_id => engagement_id)
+						@ri.update(engagement_id: engagement_id)
 					end
 					unless @attachment.blank?
-						@attachment.update(:engagement_id => engagement_id)
+						@attachment.update(engagement_id: engagement_id)
 					end
 					unless @patch.blank?
-						@patch.update(:engagement_id => engagement_id)
+						@patch.update(engagement_id: engagement_id)
 					end
 					unless @ref.blank?
-						@ref.update(:engagement_id => engagement_id)
+						@ref.update(engagement_id: engagement_id)
+					end
+					unless @plugin.blank?
+						@plugin.update(engagement_id: engagement_id)
 					end
 				end
 
