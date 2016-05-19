@@ -36,6 +36,7 @@ module Risu
 			has_many :nessus_reports
 			has_many :plugins_preferences
 			has_many :server_preferences
+			has_many :plugins
 		end
 	end
 end

@@ -289,7 +289,7 @@ module Risu
 									:severity => attributes["severity"],
 									:plugin_id => @plugin.id
 								)
-
+					@plugin.policy_id = @policy.id
 					@plugin.save
 				end
 

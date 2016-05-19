@@ -175,6 +175,7 @@ module Risu
 					t.boolean :default_account
 					t.integer :user_id
 					t.integer :engagement_id
+					t.integer :policy_id
 				end
 
 				create_table :nessus_individual_plugin_selections do |t|
