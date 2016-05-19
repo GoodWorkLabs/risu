@@ -277,7 +277,7 @@ module Risu
 					if attributes["pluginID"] == "0"
 						@plugin = Risu::Models::Plugin.find_or_create_by(:id => 1)
 					else
-						@plugin = Risu::Models::Plugin.find_or_create_by(:id => attributes["pluginID"]) do |plugin|
+						@plugin = Risu::Models::Plugin.create(:plugin_id => attributes["pluginID"]) do |plugin|
 							plugin.plugin_name = attributes["pluginName"]
 							plugin.family_name = attributes["pluginFamily"]
 						end

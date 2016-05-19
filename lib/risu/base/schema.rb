@@ -132,6 +132,7 @@ module Risu
 				end
 
 				create_table :nessus_plugins do |t|
+					t.integer :plugin_id
 					t.string :plugin_name
 					t.string :family_name
 					t.text :description, limit: 4294967295
